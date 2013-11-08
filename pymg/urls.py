@@ -21,4 +21,7 @@ if settings.DEBUG:
             'document_root': settings.MEDIA_ROOT,
         }),
     )
-    urlpatterns += staticfiles_urlpatterns()
+    #urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += patterns('django.contrib.staticfiles.views',
+        url(r'^static/(?P<path>.*)$', 'serve'),
+    )

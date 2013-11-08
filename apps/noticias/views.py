@@ -6,4 +6,4 @@ from django.shortcuts import render
 def home(request):
     #return HttpResponse(u'Pagina inicial de noticias')
 
-    return render(request, "base.html")
+    return render(request, "index.html")
