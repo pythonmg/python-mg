@@ -7,6 +7,7 @@ class Participante(models.Model):
     nome = models.CharField(max_length=150)
     email = models.EmailField(max_length=75)
     foto = models.ImageField(upload_to='participantes/')
+    descricao = models.TextField(max_length=255)
     aprovado = models.BooleanField(default=False)
 
     cadastrado = models.DateTimeField(auto_now_add=True, editable=False) 
