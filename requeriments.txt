@@ -1,3 +1,0 @@
-Django==1.5.4
-Unipath==1.0
-Pil
