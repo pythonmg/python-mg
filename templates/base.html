@@ -13,22 +13,13 @@
 
 </head>
 <body id="example" class="index">
-  <div class="ui header">
-    <div class="ui page grid">
-      <div class="ui red inverted menu">
-        <a href="/" class="active item"><i class="home icon"></i> Home</a>
-        <a href="/participantes" class="item"><i class="users icon"></i> Participantes</a>
-      </div>
-    </div>
+  <div id="menu">
+    <a href="/" class="active item"><i class="home icon"></i> Home</a>
+    <a href="/participantes" class="item"><i class="users icon"></i> Participantes</a>
   </div>
-
-  <div class="row">
-    <div class=ui "page grid">
-      <div class="ui grid">
-      {% block body %}
-      {% endblock body %}
-      </div>
-    </div>
+  <div id="frame">
+    {% block frame %}
+    {% endblock frame %}
   </div>
 </body>
 

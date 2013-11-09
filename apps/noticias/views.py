@@ -1,9 +1,9 @@
 # coding: utf-8
-
-from django.http import HttpResponse
 from django.shortcuts import render
 
-def home(request):
-    #return HttpResponse(u'Pagina inicial de noticias')
+from .models import Noticia
 
-    return render(request, "index.html")
+def home(request):
+	listagem = Noticia.objects.order_by('-data')[:5]
+	context = { 'listagem': listagem }
+	return render(request, 'index.html', context)

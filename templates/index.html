@@ -1,4 +1,14 @@
 {% extends 'base.html' %}
-{% block body %}
-	Página inicial com generic views.
-{% endblock body %}
+{% block frame %}
+{% if listagem %}
+	{% for noticia in listagem %}
+		<h2>{{ noticia.titulo }}</h2>
+		<h5>{{ noticia.data }} publicado por {{ noticia.usuario }}</h5>
+		<hr />
+		<p>{{ noticia.conteudo }}</p>
+		<br />
+	{% endfor %}
+{% else %}
+	<p>Nenhuma noticia cadastrada.</p>
+{% endif %}
+{% endblock frame %}
