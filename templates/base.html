@@ -13,18 +13,24 @@
 
 </head>
 <body id="example" class="index">
-  <div id="menu">
-    <a href="/" class="active item"><i class="home icon"></i> Home</a>
-    <a href="/participantes" class="item"><i class="users icon"></i> Participantes</a>
+  <div class="row">
+    <div class="ui page column grid">
+      <nav class="ui red inverted menu">
+        <a href="/" class="active item"><i class="home icon"></i> Home</a>
+        <a href="/participantes" class="item"><i class="users icon"></i> Participantes</a>
+      </nav>
+    </div>
   </div>
-  <div>
-    <div id="frame" style="float:left">
+
+  <main class="ui two column page grid">
+    <aside class="column">
       {% block frame %}
-      {% endblock frame %}
-    </div>
-    <div id="participante" style="float:right; margin-right:50px">
+      {% endblock frame %}  
+    </aside>
+    <aside class="column">
       {% block area_participante %}
-      {% endblock area_participante %}
-    </div>
+      {%  endblock area_participante %}
+    </aside>
+  </main>
 </body>
 </html>
