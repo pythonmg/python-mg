@@ -17,10 +17,14 @@
     <a href="/" class="active item"><i class="home icon"></i> Home</a>
     <a href="/participantes" class="item"><i class="users icon"></i> Participantes</a>
   </div>
-  <div id="frame">
-    {% block frame %}
-    {% endblock frame %}
-  </div>
+  <div>
+    <div id="frame" style="float:left">
+      {% block frame %}
+      {% endblock frame %}
+    </div>
+    <div id="participante" style="float:right; margin-right:50px">
+      {% block area_participante %}
+      {% endblock area_participante %}
+    </div>
 </body>
-
 </html>

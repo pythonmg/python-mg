@@ -1,7 +1,5 @@
 # coding: utf-8
-
 from django.db import models
-
 
 class Participante(models.Model):
     nome = models.CharField(max_length=150)
