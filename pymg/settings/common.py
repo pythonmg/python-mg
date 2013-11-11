@@ -2,6 +2,8 @@
 import os
 import unipath
 
+from django.conf import global_settings
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 ROOT_DIR = unipath.Path(__file__).ancestor(3)
@@ -98,6 +100,10 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.Loader',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    'apps.participantes.context_processors.participantes_list',
 )
 
 MIDDLEWARE_CLASSES = (
