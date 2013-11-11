@@ -30,7 +30,7 @@
     <aside class="column">
       <h2>Participantes</h2>
         {% for p in participantes %}
-          <img style="float:left" width="50px" height="60px" src="{{ MEDIA_URL }}{{ p.foto }}" />
+          <img style="float:left" width="50px" height="60px" src="{{ p.foto.url }}" />
             <p style="float:right">
               {{ p.nome }}<br />
               {{ p.descricao }}

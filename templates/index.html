@@ -2,7 +2,7 @@
 {% block frame %}
 {% if noticias %}
 	{% for noticia in noticias %}
-		<h2><a href="/noticias/{{ noticia.id }}">{{ noticia.titulo }}</a></h2>
+		<h2><a href="{% url 'noticia_detalhe' noticia.id %}">{{ noticia.titulo }}</a></h2>
 		<h5>{{ noticia.data }} publicado por {{ noticia.usuario }}</h5>
 		<p>{{ noticia.conteudo }}</p>
 		<hr />
@@ -12,14 +12,3 @@
 	<p>Nenhuma noticia cadastrada.</p>
 {% endif %}
 {% endblock frame %}
-{% block area_participante %}
-	<h2>Participantes</h2>
-    {% for p in participantes %}
-    	<img style="float:left" width="50px" height="60px" src="{{ MEDIA_URL }}{{ p.foto }}" />
-        <p style="float:right">
-          {{ p.nome }}<br />
-          {{ p.descricao }}
-        </p>
-        <hr />
-    {% endfor %}
-{% endblock area_participante %}
