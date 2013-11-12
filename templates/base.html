@@ -8,37 +8,63 @@
   <title>PUG - MG</title>
 
   <link rel="stylesheet" type="text/css" href="{% static "css/semantic.css" %}">
-  <script src="http://code.jquery.com/jquery-1.5.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
   <script type="text/javascript" src="{% static "js/semantic.js" %}"></script>
 
 </head>
+<script type="text/javascript">
+  $(function(){
+    $( "#participantes" ).sortable();
+    $( "#participantes" ).disableSelection();
+  })
+</script>
+<style type="text/css">
+  .logo{
+  background-image: url("{% static 'images/logo-pug-mg.png' %}");
+  background-repeat: no-repeat;
+  background-size: 150px 130px;
+  height: 70%;
+}
+</style>
 <body id="example" class="index">
-  <div class="row">
-    <div class="ui page column grid">
-      <nav class="ui red inverted menu">
-        <a href="{% url 'home' %}" class="active item"><i class="home icon"></i> Home</a>
-        <a href="{% url 'participante_cadastro' %}" class="item"><i class="users icon"></i> Entre para o grupo</a>
-      </nav>
+  <div class="header index">
+  <div class="logo"></div>
+    <div class="menu">
+        <div class="ui page column grid" style="padding : 0;">
+          <nav class="ui menu">
+      <a href="{% url 'home' %}" class="active item"><i class="home icon"></i> Home</a>
+      <a href="{% url 'participante_cadastro' %}" class="item"><i class="users icon"></i> Entre para o grupo</a>
+          </nav>
+      </div>
     </div>
   </div>
-
-  <main class="ui two column page grid">
-    <aside class="column" style="width:55%">
-      {% block frame %}
-      {% endblock frame %}  
-    </aside>
-    <aside class="column" style="width:40% !important; right:0px;">
-      <h2>Participantes</h2>
-        {% for p in participantes %}
-          <div>
-            <img style="float:left" width="50px" height="60px" src="{{ p.foto.url }}" />
-            <p style="float:right">
-              {{ p.nome }}<br />
-              {{ p.descricao }}
-            </p>
-          </div><br />
-        {% endfor %}
-     </aside>
-  </main>
+  <div class="content">
+    <main class="ui two column page grid">
+      <aside class="column pagina" style="width:59%">
+        {% block frame %}
+        {% endblock frame %}  
+      </aside>
+      <aside class="column pagina" style="width:40% !important; right:0px;">
+        <h2>Participantes</h2>
+        <div id="participantes">
+          {% for p in participantes %}
+            <div class="participante_item">
+<!--              <div style="float:left;margin-right:10px">
+                <img style="" width="50px" height="60px" src="{{ p.foto.url }}" />
+              </div> -->
+              <div style="float:left">
+                {{ p.nome }}<br />
+                <a href="{{ p.url }}" target="_blank">{{ p.url }}</a>
+              </div>
+              <div class="cl"></div>
+            </div>
+          {% endfor %}
+        </div>
+        <a href="{% url 'participante_listagem' %}">Ver todos os participantes</a>
+      </aside>
+    </main>
+  </div>
 </body>
 </html>

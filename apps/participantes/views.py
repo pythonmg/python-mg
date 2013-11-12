@@ -25,3 +25,7 @@ def detalhe(request, id, template='participantes/detalhe.html'):
 	except Participante.DoesNotExist:
 		raise Http404
 	return render(request, template, {'participante': participante})
+
+def listagem(request, template='participantes/listagem.html'):
+	lista = Participante.objects.filter(aprovado=True).order_by('nome')
+	return render(request, template, {'lista': lista})

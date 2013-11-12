@@ -2,7 +2,6 @@
 
 from .models import Participante
 
-
 def participantes_list(request):
     """
         A listagem de participante será exibida
@@ -10,6 +9,5 @@ def participantes_list(request):
         o context para que seja possivel acessar
         sempre os participantes.
     """
-    return {
-        'participantes': Participante.objects.filter(aprovado=True),
-    }
+    listagem = Participante.objects.filter(aprovado=True).order_by('?')[:20]
+    return {'participantes': listagem}

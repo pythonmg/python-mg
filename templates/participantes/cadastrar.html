@@ -4,9 +4,10 @@
 	$(document).ready(function(){
 		//$('#id_foto').addClass('ui button');
 		$('.tabela_cadastro').children().children().each(function(index){
-			$(this).children('td').addClass('ui input');
-			//$(this).children('th').addClass('ui pointing right label label_tabela');
+			$(this).children('td').addClass('ui input field input_tabela');
+			$(this).children('th').addClass('ui pointing right label label_tabela');
 		});
+		//$('#id_data_nascimento').datepicker();
 	});
 </script>
 <style type="text/css">
@@ -15,12 +16,23 @@
 		padding: 10px;
 	}
 	.label_tabela{
+		margin-top: -9px !important;
 		text-align: right;
+	}
+	.input_tabela{
+		width: 100%;
+	}
+	.input_tabela input{
+		padding: 9px !important;
+	}
+	textarea{
+		border-color:gray; 
+		resize:vertical;
 	}
 </style>
  <form method="post" id="form" action="." class="cadastro_pessoas" enctype="multipart/form-data">
  	{% csrf_token %}
- 	<table class="tabela_cadastro">
+ 	<table cellpadding="0" class="tabela_cadastro ui form">
     	{{ formset.as_table }}
  	</table>
  	<div style="text-align:center !important">
