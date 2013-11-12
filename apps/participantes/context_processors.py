@@ -11,5 +11,5 @@ def participantes_list(request):
         sempre os participantes.
     """
     return {
-        'participantes': Participante.objects.all(),
+        'participantes': Participante.objects.filter(aprovado=True),
     }

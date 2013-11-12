@@ -17,7 +17,7 @@
     <div class="ui page column grid">
       <nav class="ui red inverted menu">
         <a href="{% url 'home' %}" class="active item"><i class="home icon"></i> Home</a>
-        <a href="/participantes" class="item"><i class="users icon"></i> Participantes</a>
+        <a href="{% url 'participante_cadastro' %}" class="item"><i class="users icon"></i> Entre para o grupo</a>
       </nav>
     </div>
   </div>
@@ -30,12 +30,13 @@
     <aside class="column">
       <h2>Participantes</h2>
         {% for p in participantes %}
-          <img style="float:left" width="50px" height="60px" src="{{ p.foto.url }}" />
+          <div>
+            <img style="float:left" width="50px" height="60px" src="{{ p.foto.url }}" />
             <p style="float:right">
               {{ p.nome }}<br />
               {{ p.descricao }}
             </p>
-            <hr />
+          </div><br />
         {% endfor %}
      </aside>
   </main>

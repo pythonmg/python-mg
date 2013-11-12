@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block frame %}
+ <form method="post" id="form" action="." enctype="multipart/form-data">
+ 	{% csrf_token %}
+    {{ formset.as_p }}
+   <input type="submit" value="Cadastrar" />
+</form>
+{% endblock frame %}
