@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% block frame %}
+<script type="text/javascript">
+	selecionaMenu('home');
+</script>
 {% if noticias %}
 	{% for noticia in noticias %}
 		<h2><a href="{% url 'noticia_detalhe' noticia.id %}">{{ noticia.titulo }}</a></h2>

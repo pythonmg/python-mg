@@ -2,12 +2,12 @@
 {% block frame %}
 <script type="text/javascript">
 	$(document).ready(function(){
-		//$('#id_foto').addClass('ui button');
 		$('.tabela_cadastro').children().children().each(function(index){
 			$(this).children('td').addClass('ui input field input_tabela');
 			$(this).children('th').addClass('ui pointing right label label_tabela');
 		});
-		//$('#id_data_nascimento').datepicker();
+
+		selecionaMenu('membro_cad');
 	});
 </script>
 <style type="text/css">

@@ -14,6 +14,11 @@
 	height: 0px;
 }
 
+.selected_menu{
+    color: #c43c35 !important;
+    box-shadow: 0 .2em 0 inset;
+}
+
 .participante_item{
 	overflow: hidden;
 	padding: 5px;

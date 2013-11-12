@@ -9,15 +9,23 @@
 
   <link rel="stylesheet" type="text/css" href="{% static "css/semantic.css" %}">
   <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+  
   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
   <script type="text/javascript" src="{% static "js/semantic.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/scripts.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/menu.js" %}"></script>
 
 </head>
 <script type="text/javascript">
   $(function(){
     $( "#participantes" ).sortable();
     $( "#participantes" ).disableSelection();
+    $('.item').hover(function() {
+      $(this).toggleClass('active');
+    },function() {
+      $(this).toggleClass('active');
+    });
   })
 </script>
 <style type="text/css">
@@ -34,8 +42,8 @@
     <div class="menu">
         <div class="ui page column grid" style="padding : 0;">
           <nav class="ui menu">
-      <a href="{% url 'home' %}" class="active item"><i class="home icon"></i> Home</a>
-      <a href="{% url 'participante_cadastro' %}" class="item"><i class="users icon"></i> Entre para o grupo</a>
+      <a href="{% url 'home' %}" class="home item"><i class="home icon"></i> Home</a>
+      <a href="{% url 'participante_cadastro' %}" class="membro_cad item"><i class="users icon"></i> Entre para o grupo</a>
           </nav>
       </div>
     </div>
