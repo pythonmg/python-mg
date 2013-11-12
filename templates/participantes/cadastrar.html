@@ -1,8 +1,30 @@
 {% extends 'base.html' %}
 {% block frame %}
- <form method="post" id="form" action="." enctype="multipart/form-data">
+<script type="text/javascript">
+	$(document).ready(function(){
+		//$('#id_foto').addClass('ui button');
+		$('.tabela_cadastro').children().children().each(function(index){
+			$(this).children('td').addClass('ui input');
+			//$(this).children('th').addClass('ui pointing right label label_tabela');
+		});
+	});
+</script>
+<style type="text/css">
+	.cadastro_pessoas{
+		margin-top: 15px;
+		padding: 10px;
+	}
+	.label_tabela{
+		text-align: right;
+	}
+</style>
+ <form method="post" id="form" action="." class="cadastro_pessoas" enctype="multipart/form-data">
  	{% csrf_token %}
-    {{ formset.as_p }}
-   <input type="submit" value="Cadastrar" />
+ 	<table class="tabela_cadastro">
+    	{{ formset.as_table }}
+ 	</table>
+ 	<div style="text-align:center !important">
+   		<input type="submit" value="Cadastrar" class="ui button" />
+ 	</div>
 </form>
 {% endblock frame %}

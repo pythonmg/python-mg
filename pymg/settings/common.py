@@ -12,6 +12,8 @@ ROOT_DIR = unipath.Path(__file__).ancestor(3)
 ADMINS = (
     ('Lucas Magnum', 'dev@lucasmagnum.com.br'),
     ('Neilson Lima', 'neilsonlima@gmail.com'),
+    ('Igor dos Santos', 'igr.exe@gmail.com'),
+    ('Paulo Gomes', 'prxgomes@gmail.com'),
 )
 
 MANAGERS = ADMINS
