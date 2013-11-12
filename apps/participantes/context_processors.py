@@ -2,6 +2,7 @@
 
 from .models import Participante
 
+
 def participantes_list(request):
     """
         A listagem de participante será exibida

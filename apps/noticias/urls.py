@@ -1,8 +1,7 @@
-from django.conf import settings
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, url
 
 
-urlpatterns = patterns('',
-	#url(r'^$', 'apps.noticias.views.listagem', name='listagem_noticias'),
-    url(r'^(?P<id>\d+)/$', 'apps.noticias.views.detalhe', name='noticia_detalhe'),
+urlpatterns = patterns('apps.noticias.views',
+    #url(r'^$', 'apps.noticias.views.listagem', name='listagem_noticias'),
+    url(r'^(?P<id>\d+)/$', 'detalhe', name='noticia_detalhe'),
 )
