@@ -1,8 +1,11 @@
 # coding: utf-8
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import pre_save
+
 
 CHOICES_SEXO = (('M', 'Masculino'), ('F', 'Feminino'))
+
 
 class Membro(models.Model):
     nome = models.CharField(max_length=150)
@@ -24,14 +27,22 @@ class Membro(models.Model):
     def __unicode__(self):
         return self.nome
 
-    def save(self):
-        if self.user == None and self.aprovado:
-            senha = User.objects.make_random_password(length=10)
-            u = User.objects.create_user(self.email, self.email, senha)
-            u.save()
-            self.user = u
-        else:
-            u = User.objects.get(email=self.email)
-            #if u:
-            #    raise ValidationError
-        super(Membro, self).save()
+
+def update_user(sender, instance, **kwargs):
+    from random import shuffle
+    from string import letters, digits
+    
+    combination = list(letters + digits)
+    shuffle(combination)
+    senha = combination[:10]
+
+    if instance.aprovado and not instance.user:
+        user = User.objects.create(
+            username=instance.email,
+            email=instance.email,
+            password=senha)
+        user.set_password(senha)
+        instance.user = user
+        instance.save()
+
+pre_save.connect(update_user, sender=Membro)

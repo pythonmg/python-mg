@@ -19,11 +19,21 @@ def cadastrar(request, template='membros/cadastrar.html'):
     return render(request, template, {'formset': form})
 
 
+
+
 def detalhe(request, id, template='membros/detalhe.html'):
     membro = get_object_or_404(Membro, pk=id)
     return render(request, template, {'membro': membro})
 
 
 def consultar_por_nome(request, template='membros/base.html', name=''):
-    membros = Membro.objects.filter(nome__contains=name)
+    membros = Membro.objects.filter(nome__icontains=name)
     return HttpResponse(serialize('json', membros), mimetype='text/javascript')
+
+
+"""
+class Detalhe(DetailView):
+    model = Membro
+    context_object_name = 'membro'
+    template_name = 'membro/detalhe.html
+"""
