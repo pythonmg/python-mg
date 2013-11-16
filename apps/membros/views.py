@@ -1,0 +1,29 @@
+# coding: utf-8
+
+from django.shortcuts import redirect, render, get_object_or_404
+from django.http import HttpResponse
+from django.core.urlresolvers import reverse
+from django.core.serializers import serialize
+
+from .models import Membro
+from .forms import MembroForm
+
+def cadastrar(request, template='membros/cadastrar.html'):
+    form = MembroForm(request.POST or None, request.FILES or None)
+
+    if form.is_valid():
+        obj = form.save()
+        url = reverse('membro_detalhe', kwargs={'id': obj.pk})
+        return redirect(url, {'mensagem': 'Salvo com sucesso !'})
+
+    return render(request, template, {'formset': form})
+
+
+def detalhe(request, id, template='membros/detalhe.html'):
+    membro = get_object_or_404(Membro, pk=id)
+    return render(request, template, {'membro': membro})
+
+
+def consultar_por_nome(request, template='membros/base.html', name=''):
+    membros = Membro.objects.filter(nome__contains=name)
+    return HttpResponse(serialize('json', membros), mimetype='text/javascript')

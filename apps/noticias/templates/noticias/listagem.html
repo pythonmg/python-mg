@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block frame %}
+{% if noticias %}
+	{% for noticia in noticias.objetc_list %}
+		<h2><a href="/noticias/{{ noticia.id }}">{{ noticia.titulo }}</a></h2>
+		<h5>{{ noticia.data }} publicado por {{ noticia.usuario }}</h5>
+		<p>{{ noticia.conteudo }}</p>
+		<hr />
+		<br />
+	{% endfor %}
+	<!-- <div class="pagination"> -->
+		<!-- <span class="step-links"> -->
+			{% if noticias.has_previous() %}
+				<a href="?page={{ noticias.previous_page_number }}">anterior</a>
+			{% endif %}
+			<!-- <span class="current"> -->
+				Página {{ noticias.number }} de {{ noticias.paginator.num_pages }}.
+			<!-- </span> -->
+			{% if noticias.has_next() %}
+				<a href="?page={{ noticias.next_page_number }}">próxima</a>
+			{% endif %}
+		<!-- </span> -->
+	<!-- </div> -->
+{% else %}
+	<p>Nenhuma noticia cadastrada.</p>
+{% endif %}
+{% endblock frame %}
