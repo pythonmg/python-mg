@@ -27,7 +27,9 @@
       $(this).toggleClass('active');
     });
     $('#botao_pesquisar').click(function(){
-      pesquisar();
+      if($('#buscar_membro').val().length >= 3){
+        pesquisar();
+      }
     });
 
 
@@ -42,7 +44,12 @@
       data:'',
       dataType:'json',
       success: function(data){
-        alert(data);
+        formatarResultado(null);
+        if(data){
+          for (var i = 0; i < data.length; i++) {
+            formatarResultado(data[i]);
+          };
+        }
         _data = data;
       }, error:function(data){
         alert(data);
@@ -50,10 +57,17 @@
     })
   }
 
-  function formatarResultado(){
-    var item = $('#__membro_item__').children().clone();
-    // escrever html
-    $('#membros').append(item);
+  function formatarResultado(data){
+    if(data){
+      var item = $('#__membro_item__').children().clone();
+      $(item).children('.membro_img').children('img').attr('src',{{ MEDIA_URL }}+data.fields.foto);
+      $(item).children('.membro_nome').children('span').text(data.fields.nome);
+      $(item).children('.membro_nome').children('.membro_link').text(data.fields.url);
+      $(item).children('.membro_nome').children('.membro_link').attr('href',data.fields.url);
+      $('#membros').append(item);
+    }else{
+      $('#membros').html(' ');
+    }
   }
 </script>
 <style type="text/css">
@@ -62,6 +76,9 @@
   background-repeat: no-repeat;
   background-size: 150px 130px;
   height: 70%;
+}
+#membros{
+  padding: 6px;
 }
 </style>
 <body id="example" class="index">
@@ -88,19 +105,24 @@
         {% endblock frame %}  
       </aside>
       <aside class="column pagina" style="width:40% !important; right:0px;">
-        <h2>Participantes</h2>
         <div>
-          <div class="ui icon input">
-            <input id="buscar_membro" type="text" placeholder="Procurar...">
-            <i id="botao_pesquisar" style="cursor:pointer" class="circular search icon"></i>
+          <div style="float:left">
+            <h2>Participantes</h2>
           </div>
+          <div style="float:right;vertical-align:middle;margin-top:13px;">
+            <div class="ui icon input">
+              <input id="buscar_membro" type="text" placeholder="Procurar...">
+              <i id="botao_pesquisar" style="cursor:pointer" class="circular search icon"></i>
+            </div>
+          </div>
+          <div class="cl"></div>
         </div>
         <div id="membros">
           {% for p in membros %}
             <div class="membro_item">
-<!--              <div style="float:left;margin-right:10px">
-                <img style="" width="50px" height="60px" src="{{ p.foto.url }}" />
-              </div> -->
+              <div style="float:left;margin-right:10px">
+                <img class="membro_img" style="" width="50px" height="60px" src="{{ p.foto.url }}" />
+              </div>
               <div style="float:left">
                 {{ p.nome }}<br />
                 <a href="{{ p.url }}" target="_blank">{{ p.url }}</a>
@@ -116,12 +138,12 @@
 
   <div id="__membro_item__" style="display:none">
     <div class="membro_item">
-<!--              <div style="float:left;margin-right:10px">
-                <img style="" width="50px" height="60px" src="{{ p.foto.url }}" />
-              </div> -->
+      <div class="membro_img" style="float:left;margin-right:10px">
+        <img style="" width="50px" height="60px" src="" />
+      </div>
       <div class="membro_nome" style="float:left">
-        {{ p.nome }}<br />
-        <a class="membro_link" href=" " target="_blank">aaa</a>
+         <span>{{ p.nome }}</span> <br />
+        <a class="membro_link" href=" " target="_blank"></a>
       </div>
       <div class="cl"></div>
     </div>    
