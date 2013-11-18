@@ -49,7 +49,21 @@ Abra seu navegador e acesse http://127.0.0.1:8000
 Encontros
 -------------
 
-Encontro dia 02/11 
+*Encontro dia 16/11* 
+- Objetivo:
+    * Ajustes no site
+    * Definir detalhes de layout
+    * Compra de dominio do site
+    * Debate sobre hospedagem
+- Participantes: 
+    * Igor dos Santos http://github.com/igr-santos
+    * Lucas Magnum http://github.com/lucasmagnum
+    * Neilson Lima http://github.com/Neilson
+    * Paulo Rodrigues Gomes prxgomes@gmail.com
+    * Saint Clair de Sousa http://github.com/saintclair
+    * Paulo Roberto proroberto.macedo@gmail.com
+
+*Encontro dia 02/11* 
 - Objetivo:
     * Definir o foco do novo site
     * Configurar e organizar o ambiente para o desenvolvimento do novo site
