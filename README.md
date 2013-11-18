@@ -61,7 +61,7 @@ Encontros
     * Neilson Lima http://github.com/Neilson
     * Paulo Rodrigues Gomes prxgomes@gmail.com
     * Saint Clair de Sousa http://github.com/saintclair
-    * Paulo Roberto proroberto.macedo@gmail.com
+    * Paulo Roberto http://github.com/mauler
 
 *Encontro dia 02/11* 
 - Objetivo:
