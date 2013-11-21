@@ -24,7 +24,7 @@
           <a href="{% url 'membro_cadastro' %}" class="item">Entre para o grupo</a>
           {% get_flatpages as flatpages %}
           {% for page in flatpages %}
-            <a href="{{ page.url }}" class="{{ page.title }} item"><i class="inbox icon"></i>{{ page.title }}</a>
+            <a href="{{ page.url }}" class="{{ page.title }} item">{{ page.title }}</a>
           {% endfor %}
       </div>
     </div>
@@ -90,28 +90,28 @@
       <div class="center four column aligned row">
         <div class="column">
           <div class="active side">
-            <a href="#">
+            <a href="{{ twitter_url }}">
               <i class="huge circular twitter icon"></i>
             </a>
           </div>
         </div>
         <div class="column">
           <div class="active side">
-            <a href="#">
+            <a href="{{ facebook_url }}">
               <i class="huge circular facebook icon"></i>
             </a>
           </div>
         </div>
         <div class="column">
           <div class="active side">
-            <a href="#">
+            <a href="{{ github_url }}">
               <i class="huge circular github icon"></i>
             </a>
           </div>
         </div>
         <div class="column">
           <div class="active side">
-            <a href="#">
+            <a href="{{ google_url }}">
               <i class="huge circular google plus icon"></i>
             </a>
           </div>
@@ -146,7 +146,7 @@
       </div>
       <div class="six wide right floated aligned column">
         <h2 class="ui header">Python - MG</h3>
-        <p><i>"Now is better than never."</i></p>
+        <p><i>{{ zen_python|default:"Now is better than never." }}</i></p>
       </div>
     </div>
 

@@ -6,7 +6,7 @@
       {% if forloop.first %}
 
         <h2 class="ui inverted black block header">{{ noticia.titulo }}</h2>
-        <p>{{ noticia.conteudo|truncatechars:"200" }}</p>
+        <p>{{ noticia.conteudo|linebreaks|truncatechars:"200" }}</p>
 
         <div class="ui grid">
           <div class="twelve wide column">

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
   <h2 class="ui inverted black block header">{{ noticia.titulo }}</h2>
-  <p>{{ noticia.conteudo }}</p>
+  <p>{{ noticia.conteudo|linebreaks }}</p>
   <div class="ui grid">
     <div class="twelve wide column">
       <i>{{ noticia.data }}</i>

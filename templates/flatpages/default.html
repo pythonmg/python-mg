@@ -1,12 +1,5 @@
 {% extends "base.html" %}
-{% block frame %}
-<script type="text/javascript">
-	selecionaMenu('{{ flatpage.title }}');
-</script>
-<h1>{{ flatpage.title }}</h1>
-
-<p>
-{{ flatpage.content|linebreaks }}
-</p>
-
-{% endblock frame %}
+{% block content %}
+<h1 class="ui inverted black block header">{{ flatpage.title }}</h1>
+<p>{{ flatpage.content|linebreaks }}</p>
+{% endblock content %}
