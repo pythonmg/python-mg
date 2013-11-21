@@ -2,46 +2,36 @@
 
 {% block content %}
   <div class="wide column">
-    {% if noticias %}
-      {% for noticia in noticias %}
-        <div class="postagem">
-          <div class="titulo_mensagem">
-            {{ noticia.titulo }}
+    {% for noticia in noticias %}
+      {% if forloop.first %}
+
+        <h2 class="ui inverted black block header">{{ noticia.titulo }}</h2>
+        <p>{{ noticia.conteudo|truncatechars:"200" }}</p>
+
+        <div class="ui grid">
+          <div class="twelve wide column">
+            <i>{{ noticia.data }}</i>
           </div>
-          <span class="publicado_em">{{ noticia.data }} publicado por {{ noticia.usuario }}</span>
-          <div class="conteudo">
-            {{ noticia.conteudo }}
-          </div>
-          <div style="text-align:right;font-size:12px;">
-            <a href="/noticias/{{ noticia.id }}">Continue lendo</a>
+          <div class="four wide column">
+            <a class="circular ui teal animated button" href="{% url 'noticia_detalhe' noticia.id %}">
+              <div class="visible content">Continuar lendo</div>
+              <div class="hidden content"><i class="right arrow icon"></i></div>
+            </a>
           </div>
         </div>
-      {% endfor %}
-      <div style="margin:0 auto !important;text-align:center !important">
-        <div class="ui pagination menu">
-          <!-- <span class="step-links"> -->
-            {% if noticias.has_previous %}
-              <a class="icon item" href="?page={{ noticias.previous_page_number }}">
-                <i class="icon left arrow"></i>
-                Voltar
-              </a>
-            {% endif %}
-            <!-- <span class="current"> -->
-            <div class="item">
-              Página {{ noticias.number }} de {{ noticias.paginator.num_pages }}
-            <!-- </span> -->
-            </div>
-            {% if noticias.has_next %}
-              <a class="icon item" href="?page={{ noticias.next_page_number }}">
-                Próximo
-                <i class="icon right arrow"></i>
-              </a>
-            {% endif %}
-          <!-- </span> -->
+
+      <div class="ui section divider"></div>
+      <h3 class="ui header">Fique por dentro</h3>
+      {% else %}
+        <div class="ui animated selection list">
+          <div class="item">
+            <a href="{% url 'noticia_detalhe' noticia.id %}">{{ noticia.titulo }}</a>
+            <div class="right floated">{{ noticia.data|date:"d/m/Y"}}</div>
+          </div>
         </div>
-      </div>
-    {% else %}
+      {% endif %}
+    {% empty %}
       <p><i>Nenhuma noticia cadastrada.</i></p>
-    {% endif %}
+    {% endfor %}
   </div>
 {% endblock content %}

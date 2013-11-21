@@ -8,6 +8,7 @@ from django.core.serializers import serialize
 from .models import Membro
 from .forms import MembroForm
 
+
 def cadastrar(request, template='membros/cadastrar.html'):
     form = MembroForm(request.POST or None, request.FILES or None)
 
@@ -17,8 +18,6 @@ def cadastrar(request, template='membros/cadastrar.html'):
         return redirect(url, {'mensagem': 'Salvo com sucesso !'})
 
     return render(request, template, {'formset': form})
-
-
 
 
 def detalhe(request, id, template='membros/detalhe.html'):

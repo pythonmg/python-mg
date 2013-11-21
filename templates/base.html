@@ -18,10 +18,10 @@
   <div class="ui inverted page grid masthead segment">
     <div class="column">
       <div class="inverted secondary pointing ui menu">
-        <div class="header item">Python - MG</div>
+        <h3 class="header item"><a href="{% url 'home' %}">Python - MG</a></h3>
         <div class="right menu">
-          <a href="{% url 'home' %}" class="home item">Home</a>
-          <a href="{% url 'membro_cadastro' %}" class="membro_cad item">Entre para o grupo</a>
+          <a href="{% url 'home' %}" class="item">Home</a>
+          <a href="{% url 'membro_cadastro' %}" class="item">Entre para o grupo</a>
           {% get_flatpages as flatpages %}
           {% for page in flatpages %}
             <a href="{{ page.url }}" class="{{ page.title }} item"><i class="inbox icon"></i>{{ page.title }}</a>
@@ -35,46 +35,44 @@
     <div class="ui page grid stackable relaxed feature segment">
       <div class="row">
         <div class="ten wide column">
-        {% block content %}
-          <h2 class="ui header">How to Win Your Cats Attention</h2>
-          <p>Getting your cat to notice you is a large part of being a pet owner. Although I have a lot of patience for writing things about cats, perhaps this might be enough body copy to make this section of text look filled out.</p>
-          <p>This and other tips can be found in our newsletter, amazing right?</p>
-          <div class="ui basic inverted animated button button">
-            <div class="visible content">Read More</div>
-            <div class="hidden content"><i class="right arrow icon"></i></div>
-          </div>
-          <div class="ui section divider"></div>
-          <h3 class="ui header">Fique por dentro</h3>
-          <div class="ui animated selection list">
-            <div class="item">
-              How to win in a fight with a cat
-              <div class="right floated">Jan 20, 2023</div>
-            </div>
-            <div class="item">
-              A Supposedly Fun Cat Toy I will Never Buy Again
-              <div class="right floated">Jan 1, 2023</div>
-            </div>
-            <div class="item">
-              Much ado about yarn
-              <div class="right floated">Dec 20, 2022</div>
-            </div>
-          </div>
-        {% endblock content %}
+        {% block content %}{% endblock content %}
         </div>
 
         {% block membros %}
         <div class="six wide column">
-          <div class="ui secondary form segment">
-            <h3 class="ui header">Membros</h3>
-            <p>Sign up and get spammed with cats everyday. We have no unsubscribe button!</p>
-            <div class="field">
-              <div class="ui left icon action input">
-                <i class="user icon"></i>
-                <input name="email" type="text" placeholder="name@email.com">
-                <div class="ui teal submit button">Sign up</div>
-              </div>
+
+          <div class="ui piled blue segment">
+            <h2 class="ui header">
+              <i class="icon inverted circular blue users"></i> Membros
+            </h2>
+            {% if membros %}
+            <div class="ui left icon action input">
+              <i class="user icon"></i>
+              <input name="email" type="text" placeholder="Procurar...">
+              <div class="ui teal submit button"><i class="icon search"></i></div>
             </div>
-            <div class="ui error message"></div>
+            {% endif %}
+            <div class="ui section divider"></div>
+            <div class="ui comments">
+              {% for membro in membros %}
+                <div class="comment">
+                  <a class="avatar">
+                    <img src="{{ membro.foto.url }}">
+                  </a>
+                  <div class="content">
+                    <a class="author" {% if membro.url %} href="{{ membro.url }}" {% endif %}>{{ membro.nome }}</a>
+                    <div class="metadata">
+                      <span class="date">{{ membro.email }}</span>
+                    </div>
+                    <div class="text">
+                      {{ membro.descricao }}
+                    </div>
+                  </div>
+                </div>
+              {% empty %}
+                <i> Nenhum membro cadastrado </i>
+              {% endfor %}
+            </div>
           </div>
         </div>
         {% endblock membros %}

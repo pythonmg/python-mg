@@ -1,8 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-	<h2>{{ noticia.titulo }}</h2>
-	<h5>{{ noticia.data }} publicado por {{ noticia.usuario }}</h5>
-	<hr />
-	<p>{{ noticia.conteudo }}</p>
-	<br />
+  <h2 class="ui inverted black block header">{{ noticia.titulo }}</h2>
+  <p>{{ noticia.conteudo }}</p>
+  <div class="ui grid">
+    <div class="twelve wide column">
+      <i>{{ noticia.data }}</i>
+    </div>
+    <div class="four wide column">
+      <a class="circular ui teal animated button" href="{% url 'home' %}">
+        <div class="visible content">Voltar</div>
+        <div class="hidden content"><i class="left arrow icon"></i></div>
+      </a>
+    </div>
+  </div>
 {% endblock content %}
