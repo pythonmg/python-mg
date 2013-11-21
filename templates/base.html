@@ -1,152 +1,174 @@
+{% load flatpages %}
 {% load staticfiles %}
 <!DOCTYPE html>
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  
-  <title>Python - MG</title>
+  <title>{% block title %}PUG - MG{% endblock title %}</title>
 
   <link rel="stylesheet" type="text/css" href="{% static "css/semantic.css" %}">
   <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
-  
-  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-  <script type="text/javascript" src="{% static "js/semantic.js" %}"></script>
-  <script type="text/javascript" src="{% static "js/scripts.js" %}"></script>
-  <script type="text/javascript" src="{% static "js/menu.js" %}"></script>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700' rel='stylesheet' type='text/css'>
 
+  {% block style %} {% endblock style %}
 </head>
-<script type="text/javascript">
-  $(function(){
-    $( "#membros" ).sortable();
-    $( "#membros" ).disableSelection();
-    $('.item').hover(function() {
-      $(this).toggleClass('active');
-    },function() {
-      $(this).toggleClass('active');
-    });
-    $('#botao_pesquisar').click(function(){
-      if($('#buscar_membro').val().length >= 3){
-        pesquisar();
-      }
-    });
 
-
-
-  })
-  var _data = null;
-  function pesquisar(){
-    $.ajax({
-      type:'GET',
-      //url:"{% url 'membro_consultar' 'a' %}",
-      url:"/membros/"+$('#buscar_membro').val()+"/",
-      data:'',
-      dataType:'json',
-      success: function(data){
-        formatarResultado(null);
-        if(data){
-          for (var i = 0; i < data.length; i++) {
-            formatarResultado(data[i]);
-          };
-        }
-        _data = data;
-      }, error:function(data){
-        alert(data);
-      }
-    })
-  }
-
-  function formatarResultado(data){
-    if(data){
-      var item = $('#__membro_item__').children().clone();
-      $(item).children('.membro_img').children('img').attr('src',{{ MEDIA_URL }}+data.fields.foto);
-      $(item).children('.membro_nome').children('span').text(data.fields.nome);
-      $(item).children('.membro_nome').children('.membro_link').text(data.fields.url);
-      $(item).children('.membro_nome').children('.membro_link').attr('href',data.fields.url);
-      $('#membros').append(item);
-    }else{
-      $('#membros').html(' ');
-    }
-  }
-</script>
-<style type="text/css">
-  .logo{
-  background-image: url("{% static 'images/logo-pug-mg.png' %}");
-  background-repeat: no-repeat;
-  background-size: 150px 130px;
-  height: 70%;
-}
-#membros{
-  padding: 6px;
-}
-</style>
-<body id="example" class="index">
-  <div class="header index">
-  <div class="logo"></div>
-    <div class="menu">
-        <div class="ui page column grid" style="padding : 0;">
-          <nav class="ui menu">
-      <a href="{% url 'home' %}" class="home item"><i class="home icon"></i> Home</a>
-      <a href="{% url 'membro_cadastro' %}" class="membro_cad item"><i class="users icon"></i> Entre para o grupo</a>
-          {% load flatpages %}
+<body>
+  <div class="ui inverted page grid masthead segment">
+    <div class="column">
+      <div class="inverted secondary pointing ui menu">
+        <div class="header item">Python - MG</div>
+        <div class="right menu">
+          <a href="{% url 'home' %}" class="home item">Home</a>
+          <a href="{% url 'membro_cadastro' %}" class="membro_cad item">Entre para o grupo</a>
           {% get_flatpages as flatpages %}
           {% for page in flatpages %}
             <a href="{{ page.url }}" class="{{ page.title }} item"><i class="inbox icon"></i>{{ page.title }}</a>
           {% endfor %}
-          </nav>
       </div>
     </div>
   </div>
+  </div>
   <div class="content">
-    <main class="ui two column page grid">
-      <aside class="column pagina" style="width:59%">
-        {% block frame %}
-        {% endblock frame %}  
-      </aside>
-      <aside class="column pagina" style="width:40% !important; right:0px;">
-        <div>
-          <div style="float:left">
-            <h2>Participantes</h2>
+
+    <div class="ui page grid stackable relaxed feature segment">
+      <div class="row">
+        <div class="ten wide column">
+        {% block content %}
+          <h2 class="ui header">How to Win Your Cats Attention</h2>
+          <p>Getting your cat to notice you is a large part of being a pet owner. Although I have a lot of patience for writing things about cats, perhaps this might be enough body copy to make this section of text look filled out.</p>
+          <p>This and other tips can be found in our newsletter, amazing right?</p>
+          <div class="ui basic inverted animated button button">
+            <div class="visible content">Read More</div>
+            <div class="hidden content"><i class="right arrow icon"></i></div>
           </div>
-          <div style="float:right;vertical-align:middle;margin-top:13px;">
-            <div class="ui icon input">
-              <input id="buscar_membro" type="text" placeholder="Procurar...">
-              <i id="botao_pesquisar" style="cursor:pointer" class="circular search icon"></i>
+          <div class="ui section divider"></div>
+          <h3 class="ui header">Fique por dentro</h3>
+          <div class="ui animated selection list">
+            <div class="item">
+              How to win in a fight with a cat
+              <div class="right floated">Jan 20, 2023</div>
+            </div>
+            <div class="item">
+              A Supposedly Fun Cat Toy I will Never Buy Again
+              <div class="right floated">Jan 1, 2023</div>
+            </div>
+            <div class="item">
+              Much ado about yarn
+              <div class="right floated">Dec 20, 2022</div>
             </div>
           </div>
-          <div class="cl"></div>
+        {% endblock content %}
         </div>
-        <div id="membros">
-          {% for p in membros %}
-            <div class="membro_item">
-              <div style="float:left;margin-right:10px">
-                <img class="membro_img" style="" width="50px" height="60px" src="{{ p.foto.url }}" />
+
+        {% block membros %}
+        <div class="six wide column">
+          <div class="ui secondary form segment">
+            <h3 class="ui header">Membros</h3>
+            <p>Sign up and get spammed with cats everyday. We have no unsubscribe button!</p>
+            <div class="field">
+              <div class="ui left icon action input">
+                <i class="user icon"></i>
+                <input name="email" type="text" placeholder="name@email.com">
+                <div class="ui teal submit button">Sign up</div>
               </div>
-              <div style="float:left">
-                {{ p.nome }}<br />
-                <a href="{{ p.url }}" target="_blank">{{ p.url }}</a>
-              </div>
-              <div class="cl"></div>
             </div>
-          {% endfor %}
+            <div class="ui error message"></div>
+          </div>
         </div>
-      </aside>
-    </main>
+        {% endblock membros %}
+      </div>
+    </div>
+
+    <div class="ui page grid stackable segment">
+      <div class="row">
+        <div class="column">
+          <h1 class="center aligned ui header">
+            Siga, Acompanhe, Colabore!
+          </h1>
+        </div>
+      </div>
+      <div class="center four column aligned row">
+        <div class="column">
+          <div class="active side">
+            <a href="#">
+              <i class="huge circular twitter icon"></i>
+            </a>
+          </div>
+        </div>
+        <div class="column">
+          <div class="active side">
+            <a href="#">
+              <i class="huge circular facebook icon"></i>
+            </a>
+          </div>
+        </div>
+        <div class="column">
+          <div class="active side">
+            <a href="#">
+              <i class="huge circular github icon"></i>
+            </a>
+          </div>
+        </div>
+        <div class="column">
+          <div class="active side">
+            <a href="#">
+              <i class="huge circular google plus icon"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui inverted teal page grid segment">
+      <div class="ten wide column">
+        <div class="ui two column stackable grid">
+          <div class="column">
+            <div class="ui header">Próximos eventos</div>
+            <div class="ui inverted link list">
+              {% for evento in eventos %}
+                <a class="item" href="{% url 'evento_detalhe' evento.id %}">{{ evento.nome }}</a>
+              {% empty %}
+                <i> Nenhum evento cadastrado </i>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="column">
+            <div class="ui header">Projetos</div>
+            <div class="ui inverted link list">
+              {% for projeto in projetos %}
+                <a class="item" href="{% url 'projeto_detalhe' projeto.id %}">{{ projeto.nome }}</a>
+              {% empty %}
+                <i> Nenhum projeto cadastrado </i>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="six wide right floated aligned column">
+        <h2 class="ui header">Python - MG</h3>
+        <p><i>"Now is better than never."</i></p>
+      </div>
+    </div>
+
   </div>
 
-
-  <div id="__membro_item__" style="display:none">
-    <div class="membro_item">
-      <div class="membro_img" style="float:left;margin-right:10px">
-        <img style="" width="50px" height="60px" src="" />
-      </div>
-      <div class="membro_nome" style="float:left">
-         <span>{{ p.nome }}</span> <br />
-        <a class="membro_link" href=" " target="_blank"></a>
-      </div>
-      <div class="cl"></div>
-    </div>    
-  </div>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+  <script type="text/javascript" src="{% static "js/semantic.js" %}"></script>
+  <script type="text/javascript">
+    function menu_select(){
+      // automatic menu select
+      $('.ui.menu a').each(function(){
+        if (window.location.pathname == $(this).attr('href')){
+          $(this).addClass('active');
+        }
+      });
+    }
+    $(function(){
+      menu_select();
+    });
+  </script>
+  {% block scripts %}{% endblock scripts %}
 </body>
 </html>

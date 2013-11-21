@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block frame %}
+{% block content %}
 {% if noticias %}
 	{% for noticia in noticias.objetc_list %}
 		<h2><a href="/noticias/{{ noticia.id }}">{{ noticia.titulo }}</a></h2>
@@ -24,4 +24,4 @@
 {% else %}
 	<p>Nenhuma noticia cadastrada.</p>
 {% endif %}
-{% endblock frame %}
+{% endblock content %}

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block frame %}
+{% block content %}
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('.tabela_cadastro').children().children().each(function(index){
@@ -26,7 +26,7 @@
 		padding: 9px !important;
 	}
 	textarea{
-		border-color:gray; 
+		border-color:gray;
 		resize:vertical;
 	}
 </style>
@@ -39,4 +39,4 @@
    		<input type="submit" value="Cadastrar" class="ui button" />
  	</div>
 </form>
-{% endblock frame %}
+{% endblock content %}

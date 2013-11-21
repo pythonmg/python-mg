@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block frame %}
+{% block content %}
 	<h2>Membros da Comunidade</h2>
     {% for p in lista %}
     	<img style="float:left" width="50px" height="60px" src="{{ p.foto.url }}" />
@@ -7,4 +7,4 @@
         {{ p.descricao }}
         <hr />
     {% endfor %}
-{% endblock frame %}
+{% endblock content %}

@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-{% block frame %}
+{% block content %}
 	<h2>{{ noticia.titulo }}</h2>
 	<h5>{{ noticia.data }} publicado por {{ noticia.usuario }}</h5>
 	<hr />
 	<p>{{ noticia.conteudo }}</p>
 	<br />
-{% endblock frame %}
+{% endblock content %}
