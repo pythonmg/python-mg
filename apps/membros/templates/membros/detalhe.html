@@ -16,7 +16,7 @@
   </div>
   <div class="row">
     <div class="twelve wide column">
-      {% if membro.url %}<a href="{{ membro.url }}">{{ membro.url }}</a>{% endif %}
+      {% if membro.url %}<a href="{{ membro.url }}" target="_blank">{{ membro.url }}</a>{% endif %}
     </div>
     <div class="four wide column">
       <p><i>Nascido: {{ membro.data_nascimento|date:"d/m/Y" }}</i></p>
