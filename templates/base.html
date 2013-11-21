@@ -46,11 +46,11 @@
               <i class="icon inverted circular blue users"></i> Membros
             </h2>
             {% if membros %}
-            <div class="ui left icon action input">
-              <i class="user icon"></i>
-              <input name="email" type="text" placeholder="Procurar...">
-              <div class="ui teal submit button"><i class="icon search"></i></div>
-            </div>
+              <div class="ui left icon action input">
+                <i class="user icon"></i>
+                <input name="email" type="text" placeholder="Procurar...">
+                <div class="ui teal submit button"><i class="icon search"></i></div>
+              </div>
             {% endif %}
             <div class="ui section divider"></div>
             <div class="ui comments">
@@ -60,9 +60,10 @@
                     <img src="{{ membro.foto.url }}">
                   </a>
                   <div class="content">
-                    <a class="author" {% if membro.url %} href="{{ membro.url }}" {% endif %}>{{ membro.nome }}</a>
+                    <a class="author" {% if membro.url %} href="{{ membro.url }}" target="_blank" {% endif %}>{{ membro.nome }}</a>
+                    <br>
                     <div class="metadata">
-                      <span class="date">{{ membro.email }}</span>
+                      <p>{{ membro.email }}</p>
                     </div>
                     <div class="text">
                       {{ membro.descricao }}
@@ -87,32 +88,39 @@
           </h1>
         </div>
       </div>
-      <div class="center four column aligned row">
+      <div class="center five column aligned row">
         <div class="column">
           <div class="active side">
-            <a href="{{ twitter_url }}">
+            <a title="Twitter" target="_blank" href="{{ twitter_url|default:"" }}">
               <i class="huge circular twitter icon"></i>
             </a>
           </div>
         </div>
         <div class="column">
           <div class="active side">
-            <a href="{{ facebook_url }}">
-              <i class="huge circular facebook icon"></i>
+            <a title="Google+" target="_blank" href="{{ google_url|default:"" }}">
+              <i class="huge circular google plus icon"></i>
             </a>
           </div>
         </div>
         <div class="column">
           <div class="active side">
-            <a href="{{ github_url }}">
+            <a title="Github" target="_blank" href="{{ github_url|default:"" }}">
               <i class="huge circular github icon"></i>
             </a>
           </div>
         </div>
         <div class="column">
           <div class="active side">
-            <a href="{{ google_url }}">
-              <i class="huge circular google plus icon"></i>
+            <a title="E-mail" target="_blank" href="{{ email_url|default:"" }}">
+              <i class="huge circular mail icon"></i>
+            </a>
+          </div>
+        </div>
+        <div class="column">
+          <div class="active side">
+            <a title="Google Groups" target="_blank" href="{{ googlegroups_url|default:"" }}">
+              <i class="huge circular users icon"></i>
             </a>
           </div>
         </div>
@@ -128,7 +136,7 @@
               {% for evento in eventos %}
                 <a class="item" href="{% url 'evento_detalhe' evento.id %}">{{ evento.nome }}</a>
               {% empty %}
-                <i> Nenhum evento cadastrado </i>
+                <i>Nenhum evento cadastrado.</i>
               {% endfor %}
             </div>
           </div>
@@ -138,7 +146,7 @@
               {% for projeto in projetos %}
                 <a class="item" href="{% url 'projeto_detalhe' projeto.id %}">{{ projeto.nome }}</a>
               {% empty %}
-                <i> Nenhum projeto cadastrado </i>
+                <i>Nenhum projeto cadastrado.</i>
               {% endfor %}
             </div>
           </div>
@@ -146,7 +154,7 @@
       </div>
       <div class="six wide right floated aligned column">
         <h2 class="ui header">Python - MG</h3>
-        <p><i>{{ zen_python|default:"Now is better than never." }}</i></p>
+        <p><i>"{{ zen_python|default:"Now is better than never." }}"</i></p>
       </div>
     </div>
 

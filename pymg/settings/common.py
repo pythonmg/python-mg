@@ -80,7 +80,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Put strings here, like "/home/html/static" or "f:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     ROOT_DIR.child('static'),
@@ -106,6 +106,8 @@ TEMPLATE_LOADERS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'apps.membros.context_processors.membros_list',
+    'apps.context_processors.social',
+    'apps.context_processors.zen_python',
 )
 
 MIDDLEWARE_CLASSES = (
