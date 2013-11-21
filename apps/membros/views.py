@@ -25,9 +25,10 @@ def detalhe(request, id, template='membros/detalhe.html'):
     return render(request, template, {'membro': membro})
 
 
-def consultar_por_nome(request, template='membros/base.html', name=''):
-    membros = Membro.objects.filter(nome__icontains=name)
-    return HttpResponse(serialize('json', membros), mimetype='text/javascript')
+def consultar_por_nome(request, template='membros/listagem.html'):
+    name = request.GET.get('name', '')
+    membros = Membro.objects.filter(nome__icontains=name)[:5]
+    return render(request, template, {'membros': membros})
 
 
 """

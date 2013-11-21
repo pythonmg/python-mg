@@ -46,33 +46,16 @@
               <i class="icon inverted circular blue users"></i> Membros
             </h2>
             {% if membros %}
-              <div class="ui left icon action input">
-                <i class="user icon"></i>
-                <input name="email" type="text" placeholder="Procurar...">
-                <div class="ui teal submit button"><i class="icon search"></i></div>
-              </div>
+              <form class="ui form" id="pesquisar_membro">
+                <div class="ui action input">
+                  <input type="text" name="pesquisar_membro" placeholder="Pesquisar...">
+                  <div class="ui blue button submit" type="submit"><i class="icon search"></i></div>
+                </div>
+              </form>
             {% endif %}
             <div class="ui section divider"></div>
-            <div class="ui comments">
-              {% for membro in membros %}
-                <div class="comment">
-                  <a class="avatar">
-                    <img src="{{ membro.foto.url }}">
-                  </a>
-                  <div class="content">
-                    <a class="author" {% if membro.url %} href="{{ membro.url }}" target="_blank" {% endif %}>{{ membro.nome }}</a>
-                    <br>
-                    <div class="metadata">
-                      <p>{{ membro.email }}</p>
-                    </div>
-                    <div class="text">
-                      {{ membro.descricao }}
-                    </div>
-                  </div>
-                </div>
-              {% empty %}
-                <i> Nenhum membro cadastrado </i>
-              {% endfor %}
+            <div class="ui comments" id="membros-list">
+              {% include 'membros/listagem.html' %}
             </div>
           </div>
         </div>
@@ -171,7 +154,26 @@
         }
       });
     }
+
     $(function(){
+      // ao submitar enviar dados
+      $(document).on('click', '#pesquisar_membro [type=submit]', function(event){
+        valor = $(this).prev().val();
+        $.ajax({
+          type: "GET",
+          url: "{% url 'membro_consultar' %}",
+          data: {'name': valor},
+          success: function(data){
+            $('#membros-list').html(data);
+          },
+          error: function(){
+            alert('Ocorreu um erro e não foi possível realizar sua consulta.');
+          },
+        });
+
+        event.preventDefault();
+      });
+
       menu_select();
     });
   </script>

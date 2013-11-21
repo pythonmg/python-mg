@@ -1,0 +1,19 @@
+{% for membro in membros %}
+  <div class="comment">
+    <a class="avatar">
+      <img src="{{ membro.foto.url }}">
+    </a>
+    <div class="content">
+      <a class="author" href="{% url 'membro_detalhe' membro.id %}">{{ membro.nome }}</a>
+      <br>
+      <div class="metadata">
+        <p>{{ membro.email }}</p>
+      </div>
+      <div class="text">
+        {{ membro.descricao }}
+      </div>
+    </div>
+  </div>
+{% empty %}
+  <i> Nenhum membro encontrado. </i>
+{% endfor %}
