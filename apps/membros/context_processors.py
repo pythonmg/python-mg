@@ -10,5 +10,5 @@ def membros_list(request):
         o context para que seja possivel acessar
         sempre os membros.
     """
-    listagem = Membro.objects.filter(aprovado=True).order_by('?')[:20]
+    listagem = Membro.objects.filter(aprovado=True).order_by('?')[:10]
     return {'membros': listagem}

@@ -4,4 +4,5 @@ urlpatterns = patterns('',
 	url(r'^$', 'apps.views.home', name="home"),
 	url(r'^noticias/', include('apps.noticias.urls')),
     url(r'^membros/', include('apps.membros.urls')),
+    url(r'^eventos/', include('apps.eventos.urls')),
 )

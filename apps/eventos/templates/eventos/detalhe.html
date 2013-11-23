@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+	{{ evento.nome }}
+	<br />
+	{% for p in programacao %}
+		{{ p.titulo }}
+	{% endfor %}
+	<br />
+	{% for o in organizadores %}
+		{{ o.nome }}
+	{% endfor %}
+{% endblock content %}
