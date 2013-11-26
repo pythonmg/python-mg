@@ -107,6 +107,7 @@ TEMPLATE_LOADERS = (
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'apps.membros.context_processors.membros_list',
     'apps.eventos.context_processors.proximos_eventos',
+    'apps.projetos.context_processors.projetos_atualizados',
     'apps.context_processors.social',
     'apps.context_processors.zen_python',
 )
@@ -149,6 +150,7 @@ INSTALLED_APPS = (
     'apps.noticias',
     'apps.membros',
     'apps.eventos',
+    'apps.projetos',
 )
 
 # A sample logging configuration. The only tangible logging

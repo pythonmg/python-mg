@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+	<a href="{{ projeto.url }}" target="_blank">{{ projeto.nome }}</a>
+	<br />
+	{{ projeto.descricao }}
+	<br />
+	atualizado em {{ projeto.atualizado }}
+{% endblock content %}
