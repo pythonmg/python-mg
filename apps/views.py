@@ -7,4 +7,8 @@ from .noticias.models import Noticia
 
 def home(request, template='index.html'):
     noticias = Noticia.objects.order_by('-data')[:5]
-    return render(request, template, {'noticias': noticias})
+    principal = None
+    if noticias:
+        principal = noticias[0]
+        noticias = noticias[1:]
+    return render(request, template, {'principal':principal,'noticias': noticias})

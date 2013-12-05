@@ -1,37 +1,47 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="wide column">
-    {% for noticia in noticias %}
-      {% if forloop.first %}
+<style type="text/css">
+</style>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.item').hover(function(){ $(this).children('.icon').show(100);
+    }, function(){$(this).children('.icon').hide(200);})
+  });
+</script>
 
-        <h2 class="ui inverted black block header">{{ noticia.titulo }}</h2>
-        <p>{{ noticia.conteudo|linebreaks|truncatechars:"200" }}</p>
+  <div class="wide column">
+    {% if principal %}
+      
+        <h2 class="ui inverted black block header">{{ principal.titulo }}</h2>
+        <p>{{ principal.conteudo|linebreaks|truncatechars:"200" }}</p>
 
         <div class="ui grid">
           <div class="twelve wide column">
-            <i>{{ noticia.data }}</i>
+            <i>{{ principal.data }}</i>
           </div>
           <div class="four wide column">
-            <a class="circular ui teal animated button" href="{% url 'noticia_detalhe' noticia.id %}">
+            <a class="circular ui teal animated button" href="{% url 'noticia_detalhe' principal.id %}">
               <div class="visible content">Continuar lendo</div>
               <div class="hidden content"><i class="right arrow icon"></i></div>
             </a>
           </div>
         </div>
-
-      <div class="ui section divider"></div>
-      {% else %}
+    {% else %}
+      <p><i>Nenhuma noticia cadastrada.</i></p>
+    {% endif %}
+    {% if noticias %}
+    <div class="ui section divider"></div>
       <h3 class="ui header">Fique por dentro</h3>
         <div class="ui animated selection list">
+        {% for noticia in noticias %}
           <div class="item">
+            <i class="inbox icon" style="display:none"></i>
             <a href="{% url 'noticia_detalhe' noticia.id %}">{{ noticia.titulo }}</a>
-            <div class="right floated">{{ noticia.data|date:"d/m/Y"}}</div>
-          </div>
+            <div class="right floated">{{ noticia.data|date:"d/m/Y - H:i:s"}}</div>
+          </div>         
+        {% endfor %}
         </div>
       {% endif %}
-    {% empty %}
-      <p><i>Nenhuma noticia cadastrada.</i></p>
-    {% endfor %}
   </div>
 {% endblock content %}

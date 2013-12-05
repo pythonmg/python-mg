@@ -1,12 +1,82 @@
 {% extends 'base.html' %}
 {% block content %}
-	{{ evento.nome }}
-	<br />
-	{% for p in programacao %}
-		{{ p.titulo }}
-	{% endfor %}
-	<br />
-	{% for o in organizadores %}
-		{{ o.nome }}
-	{% endfor %}
+<style type="text/css">
+	.item_custom{
+		width:7em !important;
+		height:6em !important;
+		margin: 2px !important;
+		overflow: hidden;
+		float: left;
+	}
+	.avatar_custom{
+		margin:0px;
+		width:4em !important;
+		height:4em !important;
+		max-width:100px;
+	}
+</style>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.header').click(function(){
+			$(this).parent().parent().children('.descricao').slideToggle();
+			$(this).children('.icon').toggleClass('expand');
+			$(this).children('.icon').toggleClass('collapse');
+		});
+		$('.descricao').slideUp();
+	})
+</script>
+	<div>
+		<h3 class="ui inverted black block header">
+			{{ evento.nome }}
+		</h3>
+		<div class="conteudo"> 
+			<p>{{ evento.descricao | linebreaks }}
+		</div>
+
+		<div>
+			<h4 class="ui inverted black block header" style="margin-bottom:0px;">
+				Programação
+			</h4>
+			<div class="ui divided list" style="width:100%;margin-top:0px;">
+				{% for prog in programacao %}				
+					<div class="item" style="max-width:100%">
+						<div class="content" style="width:100%">
+							<div style="text-align:center;float:left; width:20%">
+								{{ prog.hora_inicio }}
+								-		
+								{{ prog.hora_fim }}
+							</div>
+							<div style="float:left; border-left: 1px solid #ccc; padding-left: 20px;">
+								<a class="header">
+									<i class="expand icon large"></i>
+									{{ prog.titulo }}
+								</a>
+							</div>
+							<div class="descricao" style="clear:both; margin-left: 20%;">
+								<span style="font-weight:bold;"> Descrição: </span>
+								{{ prog.descricao |linebreaks }}
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div style="margin-top:35px;">
+			<h4 class="ui inverted black block header">
+				Organizadores
+			</h4>
+			<div class="ui horizontal">
+				{% for org in organizadores %}
+					<a href="{{org.url}}">
+						<div class="item item_custom" align="center" style="">
+							<img class="ui image avatar avatar_custom" style="" src="{{ org.imagem.url }}" />
+							<div class="name" style="margin-top:5px;">
+								{{ org.nome }}
+							</div>
+						</div>
+					</a>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
 {% endblock content %}
