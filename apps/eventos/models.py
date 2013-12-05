@@ -7,7 +7,7 @@ EVENTO_CHOICE = (('E', 'Encontro'), ('P', 'Palestras'), ('C', 'CodeDojo'))
 class Organizador(models.Model):
 	nome = models.CharField(max_length=180)
 	url = models.URLField(max_length=200)
-	imagem = models.ImageField(upload_to='organizadores/', blank=True)
+	imagem = models.ImageField(upload_to='organizadores/', blank=True, default='membros/avatar.gif')
 
 	class Meta:
 		ordering = ['-nome']
