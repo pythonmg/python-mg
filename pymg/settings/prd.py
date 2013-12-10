@@ -9,3 +9,6 @@ ALLOWED_HOSTS = ['pythonmg.com.br']
 
 STATIC_ROOT = '/home/lucasmagnum/webapps/pythonmg_static/'
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = '/home/lucasmagnum/webapps/pythonmg_media/'
+MEDIA_URL = '/media/'
