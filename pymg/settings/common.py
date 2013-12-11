@@ -105,11 +105,14 @@ TEMPLATE_LOADERS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    'django.core.context_processors.request',
+
+    'apps.context_processors.social',
+    'apps.context_processors.zen_python',
+
     'apps.membros.context_processors.membros_list',
     'apps.eventos.context_processors.proximos_eventos',
     'apps.projetos.context_processors.projetos_atualizados',
-    'apps.context_processors.social',
-    'apps.context_processors.zen_python',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -142,9 +145,9 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
+
+    'suit',
     'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'django.contrib.flatpages',
     'apps.noticias',
@@ -180,4 +183,10 @@ LOGGING = {
             'propagate': True,
         },
     }
+}
+
+
+
+SUIT_CONFIG = {
+    'ADMIN_NAME': 'Python-MG',
 }

@@ -45,10 +45,7 @@ def zen_python(request):
         If the implementation is easy to explain, it may be a good idea.
         Namespaces are one honking great idea -- let's do more of those!
     """
-    frases = []
-    for frase in zen.split('\n'):
-        if frase.strip():
-            frases.append(frase)
+    frases = [frase for frase in zen.split('\n') if frase.strip()]
 
     random.shuffle(frases)
 
