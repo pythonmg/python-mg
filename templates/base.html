@@ -159,8 +159,8 @@
 
     $(function(){
       // ao submitar enviar dados
-      $(document).on('click', '#pesquisar_membro [type=submit]', function(event){
-        valor = $(this).prev().val();
+      $(document).on('submit', '#pesquisar_membro', function(event){
+        valor = $('input[name=pesquisar_membro]').val();
         $.ajax({
           type: "GET",
           url: "{% url 'membro_consultar' %}",
@@ -172,7 +172,6 @@
             alert('Ocorreu um erro e não foi possível realizar sua consulta.');
           },
         });
-
         event.preventDefault();
       });
 
