@@ -11,4 +11,6 @@ def membros_list(request):
         sempre os membros.
     """
     listagem = Membro.objects.filter(aprovado=True).order_by('?')[:10]
-    return {'membros': listagem}
+    return {
+        'membros': listagem
+    }
