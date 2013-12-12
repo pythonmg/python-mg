@@ -9,10 +9,12 @@ class Noticia(models.Model):
     conteudo = models.TextField(verbose_name=u'Conteúdo')
 
     data = models.DateTimeField(auto_now_add=True, editable=False)
-    visualizacoes = models.IntegerField(verbose_name=u'Visualizações', default=0, editable=False)
-    
+    visualizacoes = models.IntegerField(
+        verbose_name=u'Visualizações',
+        default=0,
+        editable=False)
+
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL)
-    
 
     class Meta:
         ordering = ['-data']

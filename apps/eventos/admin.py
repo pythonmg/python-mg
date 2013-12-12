@@ -21,6 +21,7 @@ class EventoAdmin(admin.ModelAdmin):
     list_display = ('nome', 'descricao', 'data', 'show_url')
     date_hierarchy = 'data'
     list_filter = ('data', firstletterfilter('nome'))
+    search_fields = ('nome', 'descricao', 'url')
 
     @attr_decorator(short_description='url', allow_tags=True, admin_order_field='url')
     def show_url(self, obj):

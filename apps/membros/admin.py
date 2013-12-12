@@ -12,6 +12,7 @@ class MembroAdmin(admin.ModelAdmin):
     list_display = ('show_imagem', 'nome', 'email',
                     'data_nascimento', 'genero', 'show_url')
     list_filter = ('genero', 'aprovado', firstletterfilter('nome'))
+    search_fields = ('nome', 'email')
 
     date_hierarchy = 'cadastrado'
 
