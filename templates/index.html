@@ -10,7 +10,7 @@
 
         <div class="ui grid">
           <div class="twelve wide column">
-            <i>{{ principal.data }}</i>
+            <i>{{ principal.data|safe }}</i>
           </div>
           <div class="four wide column">
             <a class="circular ui teal animated button" href="{% url 'noticia_detalhe' principal.id %}">
