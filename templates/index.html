@@ -6,7 +6,7 @@
     {% if principal %}
 
         <h2 class="ui inverted black block header">{{ principal.titulo }}</h2>
-        <p>{{ principal.conteudo|linebreaks|truncatechars:"200"|safe }}</p>
+        <p>{{ principal.conteudo|safe|linebreaks|truncatechars:"200" }}</p>
 
         <div class="ui grid">
           <div class="twelve wide column">
