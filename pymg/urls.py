@@ -9,8 +9,8 @@ urlpatterns = patterns(
     '',
     url(r'^', include('apps.urls')),
 
-    url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    url(r'^admin/', include(admin.site.urls)),
 
     url(r'^(?P<url>.*/)$', 'django.contrib.flatpages.views.flatpage'),
 )

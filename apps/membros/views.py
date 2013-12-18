@@ -1,9 +1,8 @@
+
 # coding: utf-8
 
 from django.shortcuts import redirect, render, get_object_or_404
-from django.http import HttpResponse
 from django.core.urlresolvers import reverse
-from django.core.serializers import serialize
 
 from .models import Membro
 from .forms import MembroForm
@@ -27,7 +26,7 @@ def detalhe(request, id, template='membros/detalhe.html'):
 
 def consultar_por_nome(request, template='membros/listagem.html'):
     name = request.GET.get('name', '')
-    membros = Membro.objects.filter(nome__icontains=name)[:5]
+    membros = Membro.objects.filter(nome__icontains=name, aprovado=True)[:5]
     return render(request, template, {'membros': membros})
 
 
