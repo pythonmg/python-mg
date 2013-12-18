@@ -45,6 +45,18 @@ Rode o server
 Abra seu navegador e acesse http://127.0.0.1:8000
 
 
+Wiki
+------
+https://github.com/python-mg/python-mg/wiki/
+
+Como contribuir
+----------------
+https://github.com/python-mg/python-mg/wiki/Como-contribuir
+
+Padrões utilizados
+---------------
+https://github.com/python-mg/python-mg/wiki/Padr%C3%B5es-utilizados
+
 
 Encontros
 -------------

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
   <h2 class="ui inverted black block header">{{ noticia.titulo }}</h2>
-  <p>{{ noticia.conteudo|linebreaks }}</p>
+  <p>{{ noticia.conteudo|safe|linebreaks }}</p>
   <p class="ui right header aligned">
     <strong>{{ noticia.usuario }}</strong>
   </p>

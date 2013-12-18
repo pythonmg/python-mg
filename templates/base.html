@@ -24,10 +24,6 @@
         <div class="right menu">
           <a href="{% url 'home' %}" class="item">Home</a>
           <a href="{% url 'membro_cadastro' %}" class="item">Entre para o grupo</a>
-          {% get_flatpages as flatpages %}
-          {% for page in flatpages %}
-            <a href="{{ page.url }}" class="{{ page.title }} item">{{ page.title }}</a>
-          {% endfor %}
       </div>
     </div>
   </div>
