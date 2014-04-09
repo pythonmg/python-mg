@@ -12,31 +12,12 @@ Faça o clone do código
 
 Vá para a pasta do projeto e instale as libs necessárias
    
-   `pip install -r requirements`
-
-
-Estamos utilizando o MySQL e definimos o banco de dados por variaveis de ambiente.
-Precisamos de 3 variaveis para as configurações do DB, "DB_NAME_PYMG", "DB_USER_PYMG", "DB_PASS_PYMG".
- 
- * **DB_NAME_PYMG** é o nome do banco de dados para o projeto.
- * **DB_USER_PYMG** é o nome do usuário que possui acesso ao banco de dados.
- * **DB_PASS_PYMG** é a senha de acesso ao banco de dados.
-
-Exemplo de configuração:
-   
-
-      export DB_NAME_PYMG=pymg
-      export DB_USER_PYMG=mysql_user
-      export DB_PASS_PYMG=mysql_pass
+   `pip install -r requirements/dev.txt`
 
 
 Agora já pode rodar o syncdb para criar as tabelas no banco de dados.
    
    `python manage.py syncdb`
-
-Carregue os arquivos estáticos
-   
-   `python manage.py collectstatic`
 
 Rode o server
    
