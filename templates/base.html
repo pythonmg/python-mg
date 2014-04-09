@@ -115,7 +115,7 @@
             <div class="ui header">Próximos eventos</div>
             <div class="ui inverted link list">
               {% for evento in eventos %}
-                <a class="item" href="{% url 'evento_detalhe' evento.id %}">{{ evento.nome }}</a>
+                <a class="item" href="{% url 'evento_detalhe' evento.id %}">{{ evento.titulo }}</a>
               {% empty %}
                 <i>Nenhum evento cadastrado.</i>
               {% endfor %}
