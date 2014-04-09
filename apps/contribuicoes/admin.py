@@ -26,6 +26,6 @@ class ContribuicoesAdmin(admin.ModelAdmin):
     # campos que utilizam buscas no model
     search_fields = ('titulo', 'created', )
 
-    list_filter = ('created', 'status', )
+    list_filter = ('created', )
 
-admin_site.register(Contribuicoes, ContribuicoesAdmin)
+admin.site.register(Contribuicoes, ContribuicoesAdmin)
