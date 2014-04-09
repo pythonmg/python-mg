@@ -1,0 +1,12 @@
+Django==1.5.5
+PIL==1.1.7
+
+Unipath==1.0
+
+django-debug-toolbar==0.10.2
+
+# custom django admin
+django-suit==0.2.5
+
+# for django doc
+docutils==0.11
