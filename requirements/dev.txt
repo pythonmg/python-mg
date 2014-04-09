@@ -11,3 +11,14 @@ django-suit==0.2.5
 
 # for django doc
 docutils==0.11
+
+
+# for testing 
+
+coverage>=3.6
+model-mommy
+django_nose
+nose
+spec
+nose-progressive
+xtraceback

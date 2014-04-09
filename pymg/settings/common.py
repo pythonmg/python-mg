@@ -154,6 +154,8 @@ INSTALLED_APPS = (
     'apps.membros',
     'apps.eventos',
     'apps.projetos',
+    'apps.common',
+    'apps.contribuicoes',
 
     'south'
 )
