@@ -25,6 +25,15 @@ Rode o server
    
 Abra seu navegador e acesse http://127.0.0.1:8000
 
+Rode os testes
+-------------
+
+`python manage.py syncdb --settings=pymg.settings.test`
+
+`python manage.py migrate --all --settings=pymg.settings.test`
+
+`python manage.py test --settings=pymg.settings.test`
+
 
 Wiki
 ------
