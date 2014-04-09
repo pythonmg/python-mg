@@ -154,6 +154,8 @@ INSTALLED_APPS = (
     'apps.membros',
     'apps.eventos',
     'apps.projetos',
+
+    'south'
 )
 
 # A sample logging configuration. The only tangible logging
