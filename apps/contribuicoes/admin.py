@@ -18,7 +18,7 @@ class ContribuicoesAdmin(admin.ModelAdmin):
 
     # campos a serem exibidos na tabela
     list_display = (
-        'titulo', 'descricao',
+        'titulo', 'descricao', 'aprovado', 'created'
     )
 
     date_hierarchy = 'created'
