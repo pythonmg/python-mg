@@ -6,7 +6,7 @@ from django.utils.translation import ugettext as _
 
 # Relative imports
 
-from common.models import TimeStampedModel
+from apps.common.models import TimeStampedModel
 
 
 class Contribuicoes(TimeStampedModel):
