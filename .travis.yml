@@ -10,7 +10,3 @@ script:
   - python manage.py syncdb --noinput
   - python manage.py migrate --all
   - python manage.py test
-notifications:
-  email:
-    recipients:
-      - guilhermevierno@gmail.com
