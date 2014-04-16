@@ -3,7 +3,7 @@ Python-MG
 
 Nova versão do site da comunidade Python de Minas Gerais.
 
-[![Build Status](https://travis-ci.org/python-mg/python-mg.svg?branch=master)](https://travis-ci.org/guilhermevs/python-mg)
+[![Build Status](https://travis-ci.org/python-mg/python-mg.svg?branch=master)](https://travis-ci.org/python-mg/python-mg)
 
 
 Primeiros passos
