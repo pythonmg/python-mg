@@ -20,7 +20,7 @@ lib64
 __pycache__
 
 #sqlite
-pymg/db.sqlite3
+*.sqlite3
 
 # Installer logs
 pip-log.txt
