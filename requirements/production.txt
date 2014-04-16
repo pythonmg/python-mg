@@ -5,6 +5,8 @@ PIL==1.1.7
 
 Unipath==1.0
 
+python-social-auth==0.1.23
+
 # custom django admin
 django-suit==0.2.5
 

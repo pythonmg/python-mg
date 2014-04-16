@@ -1,9 +1,8 @@
 from django.forms import ModelForm
-from .models import Membro
+from .models import Member
 
 
 class MembroForm(ModelForm):
     class Meta:
-        model = Membro
-        fields = ['nome','data_nascimento', 'genero',
-                    'email', 'url', 'foto', 'descricao']
+        model = Member
+        fields = ['website', 'enterprise']

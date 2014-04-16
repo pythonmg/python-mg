@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from .models import Membro
+from .models import Member
 
 
 def membros_list(request):
@@ -10,7 +10,7 @@ def membros_list(request):
         o context para que seja possivel acessar
         sempre os membros.
     """
-    listagem = Membro.objects.filter(aprovado=True).order_by('?')[:10]
+    listagem = Member.objects.all().order_by('?')[:10]
     return {
         'membros': listagem
     }
