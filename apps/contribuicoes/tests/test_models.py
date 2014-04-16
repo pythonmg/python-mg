@@ -8,6 +8,7 @@ from django.utils import timezone
 from model_mommy import mommy
 
 # Relative imports of the 'app-name' package
+from apps.contribuicoes.models import Contribuicoes
 
 
 ######### WHAT WE NEED TEST #########
@@ -26,6 +27,30 @@ from model_mommy import mommy
 #
 #####################################
 
-class ModelNameTests(TestCase):
+class ContribuicoesModelTests(TestCase):
     """
+    Classe para teste do model de contribuicoes
     """
+
+    def setUp(self):
+        """
+        Inicializa os testes
+        """
+        self.contribuicao = mommy.make(Contribuicoes)
+
+    def test_contribuicao_create_instance(self):
+        """
+        Testa se a instancia do model Contribuicao foi criada
+        """
+        self.assertIsInstance(self.contribuicao, Contribuicoes)
+
+    def test_return_unicode_method(self):
+        """
+        Testa o retorno do metodo unicode
+        """
+        self.assertEqual(
+            self.contribuicao.__unicode__(),
+            u'%s' % (
+                self.contribuicao.titulo
+            )
+        )

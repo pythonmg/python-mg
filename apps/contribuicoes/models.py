@@ -43,7 +43,8 @@ class Contribuicoes(TimeStampedModel):
     """
 
     aprovado = models.BooleanField(
-        verbose_name=_(u'Contribuição Aprovada?')
+        verbose_name=_(u'Contribuição Aprovada?'),
+        default=False
     )
     """
     Atributo da classe para
@@ -62,5 +63,5 @@ class Contribuicoes(TimeStampedModel):
         verbose_name = _(u'Contribuição')
         verbose_name_plural = _(u'Contribuições')
 
-        def __unicode__(self):
-            return u'%s' % (self.titulo)
+    def __unicode__(self):
+        return u'%s' % (self.titulo)
