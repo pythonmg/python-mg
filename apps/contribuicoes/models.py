@@ -43,7 +43,8 @@ class Contribuicoes(TimeStampedModel):
     """
 
     aprovado = models.BooleanField(
-        verbose_name=_(u'Contribuição Aprovada?')
+        verbose_name=_(u'Contribuição Aprovada?'),
+        default=False
     )
     """
     Atributo da classe para
