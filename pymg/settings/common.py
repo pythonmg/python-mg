@@ -20,12 +20,16 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.environ.get('DB_NAME_PYMG'),                      # Or path to database file if using sqlite3.
+        # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.mysql',
+        # Or path to database file if using sqlite3.
+        'NAME': os.environ.get('DB_NAME_PYMG'),
         # The following settings are not used with sqlite3:
         'USER': os.environ.get('DB_USER_PYMG'),
         'PASSWORD': os.environ.get('DB_PASS_PYMG'),
-        'HOST': 'localhost',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        # Empty for localhost through domain sockets or '127.0.0.1' for
+        # localhost through TCP.
+        'HOST': 'localhost',
         'PORT': '3306',                      # Set to empty string for default.
     }
 }
@@ -91,7 +95,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -101,18 +105,7 @@ SECRET_KEY = '46e@k*=zxn*g*z=fn@^ym^3b9uz1dqhpkscoz8y(6@w&@jq&#0'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
-    'django.core.context_processors.request',
-
-    'apps.context_processors.social',
-    'apps.context_processors.zen_python',
-
-    'apps.membros.context_processors.membros_list',
-    'apps.eventos.context_processors.proximos_eventos',
-    'apps.projetos.context_processors.projetos_atualizados',
+    #     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -128,13 +121,9 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'pymg.urls'
 
-# Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'pymg.wsgi.application'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
     os.path.join(ROOT_DIR, 'templates')
 )
 
@@ -157,8 +146,37 @@ INSTALLED_APPS = (
     'apps.common',
     'apps.contribuicoes',
 
-    'south'
+    'south',
+    'social.apps.django_app.default',
 )
+
+TTEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    'django.core.context_processors.request',
+
+    'apps.context_processors.social',
+    'apps.context_processors.zen_python',
+
+    'apps.membros.context_processors.membros_list',
+    'apps.eventos.context_processors.proximos_eventos',
+    'apps.projetos.context_processors.projetos_atualizados',
+
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.github.GithubOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/membros/done/'
+URL_PATH = ''
+SOCIAL_AUTH_STRATEGY = 'social.strategies.django_strategy.DjangoStrategy'
+SOCIAL_AUTH_STORAGE = 'social.apps.django_app.default.models.DjangoStorage'
+
+SOCIAL_AUTH_GITHUB_KEY = 'dc48a352e4241cc3c810'
+SOCIAL_AUTH_GITHUB_SECRET = 'bcfda19b4353d1a352bb1a9fd9979a8ae93a7b6e'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -188,7 +206,6 @@ LOGGING = {
         },
     }
 }
-
 
 
 SUIT_CONFIG = {
