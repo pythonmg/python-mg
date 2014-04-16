@@ -9,8 +9,7 @@ class Empresas(models.Model):
     nome = models.CharField(
         max_length=180,
         verbose_name=u'Nome')
-    site = models.CharField(
-        max_length=400,
+    site = models.URLField(
         verbose_name=u'Site',
         blank=True,
         null=True)
