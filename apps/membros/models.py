@@ -19,4 +19,4 @@ class Member(models.Model):
     social = models.ManyToManyField(Social, null=True)
 
     def __unicode__(self):
-        return self.user.first_name
+        return u'%s %s' % (self.user.first_name, self.user.last_name)
