@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from .noticias.models import Noticia
 
 
-def home(request, template='index.html'):
+def home(request, template='v2/index.html'):
     noticias = Noticia.objects.order_by('-data')[:5]
     context = {
         'principal': noticias[0] if noticias else None,
