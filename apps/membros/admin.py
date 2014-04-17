@@ -5,7 +5,7 @@ from django.contrib import admin
 from ..common.decorators import attr_decorator
 from ..common.admin import firstletterfilter
 """
-from .models import Member
+from .models import Member, Social, TypeSocial
 
 """
 class MembroAdmin(admin.ModelAdmin):
@@ -33,3 +33,5 @@ admin.site.register(Membro, MembroAdmin)
 """
 
 admin.site.register(Member)
+admin.site.register(TypeSocial)
+admin.site.register(Social)
