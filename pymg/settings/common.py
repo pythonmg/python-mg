@@ -135,7 +135,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-#    'suit',
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.flatpages',
@@ -149,6 +148,7 @@ INSTALLED_APPS = (
 
     'south',
     'social.apps.django_app.default',
+    'django_gravatar',
 )
 
 TTEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
@@ -208,7 +208,8 @@ LOGGING = {
     }
 }
 
-
+"""
 SUIT_CONFIG = {
     'ADMIN_NAME': 'Python-MG',
 }
+"""

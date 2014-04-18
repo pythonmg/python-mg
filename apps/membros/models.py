@@ -2,6 +2,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from django_gravatar.helpers import get_gravatar_url
+
 
 class Member(models.Model):
     user = models.OneToOneField(User, primary_key=True,
@@ -11,6 +13,12 @@ class Member(models.Model):
 
     def __unicode__(self):
         return u'%s %s' % (self.user.first_name, self.user.last_name)
+
+    @property
+    def avatar(self):
+        import pdb; pdb.set_trace()
+        url = get_gravatar_url(self.user.email, size=80)
+        return url
 
 
 class TypeSocial(models.Model):
