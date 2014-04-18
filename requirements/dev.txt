@@ -5,8 +5,7 @@ Pillow==2.4.0
 Unipath==1.0
 
 python-social-auth==0.1.23
-
-django-debug-toolbar==0.10.2
+django-gravatar2==1.1.4
 
 # custom django admin
 django-suit==0.2.5

@@ -47,7 +47,8 @@
  <h3 class="ui inverted black block header">Entre para o Grupo</h3>
  <form method="post" id="form" action="." class="cadastro_pessoas" enctype="multipart/form-data">
  	{% csrf_token %}
- 	<table cellpadding="0" class="tabela_cadastro ui form">
+    <table cellpadding="0" class="tabela_cadastro ui form">
+        {{ form.as_table }}
     	{{ formset.as_table }}
  	</table>
  	<div style="text-align:center !important">

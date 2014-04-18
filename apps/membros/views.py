@@ -3,32 +3,47 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render, get_object_or_404
 from django.core.urlresolvers import reverse
+from django.forms.models import inlineformset_factory
 
-from .models import Member
-from .forms import MembroForm
+from .models import Member, Social
+from .forms import MemberForm, SocialFormset
 
 
 @login_required
 def redirect_form(request, template='membros/cadastrar.html'):
-    if request.user.member_profile:
+    profile = Member.objects.get(user=request.user)
+    if profile:
         return redirect('done')
 
-    form = MembroForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        member = form.save(commit=False)
-        member.user = request.user
-        member.save()
-        return redirect('done')
-    
-    return render(request, template, {'formset': form})
+    form = MemberForm()
+    formset = SocialFormset(instance=Member())
+    if request.method == 'POST':
+        form = MemberForm(request.POST)
+        if form.is_valid():
+            member = form.save(commit=False)
+            member.user = request.user
+            member.save()
+            formset = SocialFormset(request.POST, instance=member)
+            if formset.is_valid():
+                formset.save()
+                return redirect('done')
+
+    return render(request, template, {'form': form, 'formset': formset})
+
 
 @login_required
 def done(request):
-    if request.user.member_profile:
+    profile = Member.objects.get(user=request.user)
+    if profile:
         """Login complete view, display user data"""
-        return render(request, 'done.html',{'member': member})
+        return render(
+            request,
+            'membros/done.html',
+            {'profile': profile}
+        )
     else:
         return redirect('redirect_form')
+
 
 def detalhe(request, id, template='membros/detalhe.html'):
     membro = get_object_or_404(Member, pk=id)
