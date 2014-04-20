@@ -9,6 +9,9 @@ from django.template import RequestContext
 # Third-party app imports
 
 # Imports from your apps
+from .forms import ContribuicaoForm
+from .models import Contribuicoes
+from apps.noticias.models import Noticia
 
 
 def contribuicao(request):
@@ -16,4 +19,21 @@ def contribuicao(request):
     View para salvar os dados do post do formulario
     de contribuicao
     """
-    pass
+    import pudb; pudb.set_trace()
+    if request.method == 'POST':
+        form = ContribuicaoForm(request.POST, request.FILES,)
+        if form.is_valid():
+            contribuicao = form.save(commit=False)
+        else:
+            form = ContribuicaoForm()
+        contribuicao.save()
+    noticias = Noticia.objects.order_by('-data')[:5]
+    return render_to_response(
+        'index.html',
+        {
+            'form': form,
+            'principal': noticias[0] if noticias else None,
+            'noticias': noticias[1:],
+        },
+        context_instance=RequestContext(request)
+    )
