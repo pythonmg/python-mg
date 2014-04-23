@@ -19,7 +19,6 @@ def contribuicao(request):
     View para salvar os dados do post do formulario
     de contribuicao
     """
-    import pudb; pudb.set_trace()
     if request.method == 'POST':
         form = ContribuicaoForm(request.POST, request.FILES,)
         if form.is_valid():
@@ -27,6 +26,8 @@ def contribuicao(request):
         else:
             form = ContribuicaoForm()
         contribuicao.save()
+    else:
+        form = ContribuicaoForm()
     noticias = Noticia.objects.order_by('-data')[:5]
     return render_to_response(
         'index.html',
