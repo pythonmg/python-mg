@@ -1,8 +1,10 @@
 Django==1.5.5
 South==0.8.4
-PIL==1.1.7
+Pillow==2.4.0
 
 Unipath==1.0
+
+python-social-auth==0.1.23
 
 django-debug-toolbar==0.10.2
 
@@ -13,7 +15,7 @@ django-suit==0.2.5
 docutils==0.11
 
 
-# for testing 
+# for testing
 
 coverage>=3.6
 model-mommy

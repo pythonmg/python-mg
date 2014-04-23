@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <title>Python MG | Maior comunidade Python de Minas Gerais!</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    </head>
+    <body>
+        <header class="row-fluid">
+            {% block "header" %}
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Python MG</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="main-nav">
+                        {% block "main-menu" %}
+                        <ul class="nav navbar-nav">
+                            {% block "main-menu-items" %}
+                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="#">Membros</a></li>
+                            <li><a href="#">Empresas</a></li>
+                            <li><a href="#">Eventos</a></li>
+                            <li><a href="#">Contribuição</a></li>
+                            <li><a href="#">Blog</a></li>
+                            {% endblock %}
+                        </ul>
+                        {% endblock %}
+                    </div>
+                </div>
+            </nav>
+            {% endblock %}
+        </header>
+
+        <main>
+            {% block "content" %}{% endblock %}
+        </main>
+
+        <footer>
+            <div class="container">
+                {% block "footer" %}
+                <div class="">
+                    <address>Python - MG 2014 - "UNLESS EXPLICITY SILENCED"</address>
+                    {% block "social-menu" %}
+                    <ul>
+                        {% block "social-menu-items" %}
+                        <li class="twitter"><a href="#" title="Twitter">Twitter</a></li>
+                        <li class="gplus"><a href="#" title="Google+">Google+</a></li>
+                        <li class="github"><a href="#" title="Github">Github</a></li>
+                        <li class="email"><a href="#" title="E-mail">E-mail</a></li>
+                        <li class="chat"><a href="#" title="Chat">Chat</a></li>
+                        {% endblock %}
+                    </ul>
+                    {% endblock %}
+                {% endblock %}
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    </body>
+</html>
