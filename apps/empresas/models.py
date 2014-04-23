@@ -20,6 +20,8 @@ class Empresas(models.Model):
         max_length=9,
         blank=True,
         null=True)
+    imagem = models.ImageField(u"Imagem", upload_to=u"empresa/%Y/%m",
+                               blank=True, null=True)
     disponivel = models.BooleanField(
         default=False,
         verbose_name=u'Disponível',
@@ -30,4 +32,8 @@ class Empresas(models.Model):
         help_text=u'Possui interesse em alguma publicação')
 
     def __unicode__(self):
-        self.nome
+        return self.nome
+
+    class Meta:
+        verbose_name = u'Empresa'
+        verbose_name_plural = u'Empresas'
