@@ -5,6 +5,6 @@ from django.core.urlresolvers import reverse_lazy
 from django.conf import settings
 
 urlpatterns = patterns(
-    'contributions.views',
-    url(r'^$', 'contribuicao', name='contribuicao'),
+    'apps.contribuicoes.views',
+    url(r'^$', 'contribuicao', name='apps.contribuicoes:contribuicao-add'),
 )
