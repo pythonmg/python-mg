@@ -30,11 +30,6 @@
                         <ul class="nav navbar-nav">
                             {% block "main-menu-items" %}
                             <li class="active"><a href="#">Home</a></li>
-                            <li>
-                                <a href="{% url 'social:begin' 'github' %}">
-                                    <span class="glyphicon glyphicon-user" style="margin-right: 5px;"></span>Sign in Github
-                                </a>
-                            </li>
                             <li><a href="#">Empresas</a></li>
                             <li><a href="#">Eventos</a></li>
                             <li><a href="#">Contribuição</a></li>
@@ -42,6 +37,15 @@
                             {% endblock %}
                         </ul>
                         {% endblock %}
+                        <span class="navbar-text navbar-right">
+                        {% if request.user.is_authenticated %}
+                        <span class="glyphicon glyphicon-off" style="margin-right: 5px;"></span>
+                        <a href="{% url 'logout' %}">Encerrar Sessão</a>
+                        {% else %}
+                        <span class="glyphicon glyphicon-user" style="margin-right: 5px;"></span>
+                        <a href="{% url 'social:begin' 'github' %}">Logar com Github</a>
+                        {% endif %}
+                        </span>
                     </div>
                 </div>
             </nav>

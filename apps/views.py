@@ -1,4 +1,5 @@
 # coding: utf-8
+from django.contrib.auth import logout as auth_logout
 from django.shortcuts import render, redirect
 
 from .noticias.models import Noticia
@@ -13,3 +14,8 @@ def home(request, template='v2/index.html'):
         'form': ContribuicaoForm
     }
     return render(request, template, context)
+
+
+def logout(request):
+	auth_logout(request)
+	return redirect('home')

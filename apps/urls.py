@@ -3,13 +3,9 @@ from django.conf.urls import patterns, include, url
 # from .views import LoginView
 
 urlpatterns = patterns(
-    '',
-    url(r'^$', 'apps.views.home', name='home'),
-    url(r'^login/$',
-        'django.contrib.auth.views.login',
-        {'template_name': 'login.html'},
-        name='login'),
-    url(r'^logout/$', 'django.contrib.auth.views.logout', name='logout'),
+    'apps.views',
+    url(r'^$', 'home', name='home'),
+    url(r'^logout/$', 'logout', name='logout'),
 
     url(r'^noticias/', include('apps.noticias.urls')),
     url(r'^membros/', include('apps.membros.urls')),
