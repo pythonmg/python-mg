@@ -16,7 +16,6 @@ class Member(models.Model):
 
     @property
     def avatar(self):
-        import pdb; pdb.set_trace()
         url = get_gravatar_url(self.user.email, size=80)
         return url
 

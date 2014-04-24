@@ -10,9 +10,8 @@ from .forms import MemberForm, SocialFormset
 
 
 @login_required
-def redirect_form(request, template='membros/cadastrar.html'):
-    profile = Member.objects.get(user=request.user)
-    if profile:
+def register_final(request, template='membros/v2/register_final.html'):
+    if Member.objects.filter(user=request.user).exists():
         return redirect('done')
 
     form = MemberForm()
@@ -20,21 +19,27 @@ def redirect_form(request, template='membros/cadastrar.html'):
     if request.method == 'POST':
         form = MemberForm(request.POST)
         if form.is_valid():
+            user = request.user
+            user.set_password(form.cleaned_data.get('password'))
+            user.save()
+
             member = form.save(commit=False)
-            member.user = request.user
+            member.user = user
             member.save()
             formset = SocialFormset(request.POST, instance=member)
             if formset.is_valid():
                 formset.save()
                 return redirect('done')
+            else:
+                return redirec('done')
 
     return render(request, template, {'form': form, 'formset': formset})
 
 
 @login_required
 def done(request):
-    profile = Member.objects.get(user=request.user)
-    if profile:
+    profile = Member.objects.filter(user=request.user)
+    if len(profile) > 0:
         """Login complete view, display user data"""
         return render(
             request,
@@ -42,7 +47,7 @@ def done(request):
             {'profile': profile}
         )
     else:
-        return redirect('redirect_form')
+        return redirect('register-final')
 
 
 def detalhe(request, id, template='membros/detalhe.html'):

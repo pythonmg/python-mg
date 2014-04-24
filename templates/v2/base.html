@@ -1,3 +1,4 @@
+{% load url from future %}
 <!DOCTYPE html>
 <html lang="pt">
     <head>
@@ -29,7 +30,11 @@
                         <ul class="nav navbar-nav">
                             {% block "main-menu-items" %}
                             <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#">Membros</a></li>
+                            <li>
+                                <a href="{% url 'social:begin' 'github' %}">
+                                    <span class="glyphicon glyphicon-user" style="margin-right: 5px;"></span>Sign in Github
+                                </a>
+                            </li>
                             <li><a href="#">Empresas</a></li>
                             <li><a href="#">Eventos</a></li>
                             <li><a href="#">Contribuição</a></li>
