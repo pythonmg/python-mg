@@ -15,8 +15,8 @@ class Member(models.Model):
         return u'%s %s' % (self.user.first_name, self.user.last_name)
 
     @property
-    def avatar(self):
-        url = get_gravatar_url(self.user.email, size=80)
+    def avatar(self, size=100):
+        url = get_gravatar_url(self.user.email, size)
         return url
 
 

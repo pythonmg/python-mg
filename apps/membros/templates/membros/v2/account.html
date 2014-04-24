@@ -1,10 +1,19 @@
 {% extends 'v2/base.html' %}
+{% load gravatar %}
 {% load bootstrap3 %}
 
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
 {% block "content" %}
-<img src="{{ user.profile.avatar }}" />
-<p>{{ user.first_name }}</p>
+<div class="row">
+	<div class="col-xs-6 col-lg-4">
+	    <img src="{% gravatar_url user.email 100 %}" />
+	</div>
+	<div class="col-xs-12 col-sm-6 col-lg-8">
+		{% for social in user.profile.social_list.all %}
+		<a href="{{ social.url }}" targer="_blank"><img src="{{ STATIC_URL }}{{ social.type_social.icon }}" /></a>
+		{% endfor %}
+	</div>
+</div>
 {% endblock %}
