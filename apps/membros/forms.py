@@ -6,8 +6,6 @@ from .models import Member, Social, TypeSocial
 
 
 class MemberForm(forms.ModelForm):
-    website = forms.URLField(label=u'web', required=False)
-    enterprise = forms.CharField(label=u'Empresa', required=False)
 
     class Meta:
         model = Member
@@ -15,24 +13,26 @@ class MemberForm(forms.ModelForm):
 
 
 class SocialForm(forms.ModelForm):
-    TYPE_SOCIAL_CHOICES = [(x.id, x.name) for x in TypeSocial.objects.all()]
+    TYPE_CHOICES = [(x.id, x.name) for x in TypeSocial.objects.all()]
 
-    url = forms.URLField(label=u'URL', required=False)
-    """
-    type_social = forms.CharField(
-        label=u'Tipo da rede social',
-        required=False,
-        choices=TYPE_SOCIAL_CHOICES,
-    )"""
+    url = forms.URLField(required=False)
+    type_social = forms.ChoiceField(
+        choices=TYPE_CHOICES, required=False)
 
     class Meta:
         model = Social
         fields = ['url', 'type_social']
 
+    def clean(self):
+        self._validade_unique = True
+        id = self.cleaned_data.get('type_social')
+        self.cleaned_data['type_social'] = TypeSocial.objects.get(pk=id)
+
+        return self.cleaned_data
+
 
 SocialFormset = inlineformset_factory(
     Member, Social,
     form=SocialForm,
-    fields=('url', 'type_social',),
-    can_delete=True,
+    can_delete=False,
 )

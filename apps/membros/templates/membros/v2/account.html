@@ -1,0 +1,10 @@
+{% extends 'v2/base.html' %}
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block "content" %}
+<img src="{{ user.profile.avatar }}" />
+<p>{{ user.first_name }}</p>
+{% endblock %}
