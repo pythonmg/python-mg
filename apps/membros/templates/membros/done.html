@@ -1,0 +1,4 @@
+{% load gravatar %}
+{% load url from future %}
+<img src="{{ request.user.profile.avatar }}" alt="Avatar do Membro"/>
+<p>You are logged in as {{ request.user.first_name }}! (<a href="/logout/">Logout</a>)</p>

@@ -8,26 +8,41 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Membro'
-        db.create_table(u'membros_membro', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('nome', self.gf('django.db.models.fields.CharField')(max_length=150)),
-            ('email', self.gf('django.db.models.fields.EmailField')(unique=True, max_length=75)),
-            ('url', self.gf('django.db.models.fields.URLField')(max_length=200, blank=True)),
-            ('data_nascimento', self.gf('django.db.models.fields.DateField')()),
-            ('genero', self.gf('django.db.models.fields.CharField')(max_length=1)),
-            ('foto', self.gf('django.db.models.fields.files.ImageField')(default='membros/avatar.gif', max_length=100)),
-            ('descricao', self.gf('django.db.models.fields.TextField')(max_length=255)),
-            ('aprovado', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('cadastrado', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'], null=True, on_delete=models.SET_NULL, blank=True)),
+        # Adding model 'Member'
+        db.create_table(u'membros_member', (
+            ('user', self.gf('django.db.models.fields.related.OneToOneField')(related_name='member_profile', unique=True, primary_key=True, to=orm['auth.User'])),
+            ('website', self.gf('django.db.models.fields.URLField')(max_length=200, null=True, blank=True)),
+            ('enterprise', self.gf('django.db.models.fields.CharField')(max_length=180, null=True, blank=True)),
         ))
-        db.send_create_signal(u'membros', ['Membro'])
+        db.send_create_signal(u'membros', ['Member'])
+
+        # Adding model 'TypeSocial'
+        db.create_table(u'membros_typesocial', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=30)),
+            ('icon', self.gf('django.db.models.fields.CharField')(max_length=80)),
+        ))
+        db.send_create_signal(u'membros', ['TypeSocial'])
+
+        # Adding model 'Social'
+        db.create_table(u'membros_social', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('url', self.gf('django.db.models.fields.URLField')(max_length=200)),
+            ('type_social', self.gf('django.db.models.fields.related.ForeignKey')(related_name='social_list', to=orm['membros.TypeSocial'])),
+            ('member', self.gf('django.db.models.fields.related.ForeignKey')(related_name='social_list', to=orm['membros.Member'])),
+        ))
+        db.send_create_signal(u'membros', ['Social'])
 
 
     def backwards(self, orm):
-        # Deleting model 'Membro'
-        db.delete_table(u'membros_membro')
+        # Deleting model 'Member'
+        db.delete_table(u'membros_member')
+
+        # Deleting model 'TypeSocial'
+        db.delete_table(u'membros_typesocial')
+
+        # Deleting model 'Social'
+        db.delete_table(u'membros_social')
 
 
     models = {
@@ -67,19 +82,24 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        u'membros.membro': {
-            'Meta': {'ordering': "['-cadastrado']", 'object_name': 'Membro'},
-            'aprovado': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'cadastrado': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'data_nascimento': ('django.db.models.fields.DateField', [], {}),
-            'descricao': ('django.db.models.fields.TextField', [], {'max_length': '255'}),
-            'email': ('django.db.models.fields.EmailField', [], {'unique': 'True', 'max_length': '75'}),
-            'foto': ('django.db.models.fields.files.ImageField', [], {'default': "'membros/avatar.gif'", 'max_length': '100'}),
-            'genero': ('django.db.models.fields.CharField', [], {'max_length': '1'}),
+        u'membros.member': {
+            'Meta': {'object_name': 'Member'},
+            'enterprise': ('django.db.models.fields.CharField', [], {'max_length': '180', 'null': 'True', 'blank': 'True'}),
+            'user': ('django.db.models.fields.related.OneToOneField', [], {'related_name': "'member_profile'", 'unique': 'True', 'primary_key': 'True', 'to': u"orm['auth.User']"}),
+            'website': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'})
+        },
+        u'membros.social': {
+            'Meta': {'object_name': 'Social'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'nome': ('django.db.models.fields.CharField', [], {'max_length': '150'}),
-            'url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']", 'null': 'True', 'on_delete': 'models.SET_NULL', 'blank': 'True'})
+            'member': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'social_list'", 'to': u"orm['membros.Member']"}),
+            'type_social': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'social_list'", 'to': u"orm['membros.TypeSocial']"}),
+            'url': ('django.db.models.fields.URLField', [], {'max_length': '200'})
+        },
+        u'membros.typesocial': {
+            'Meta': {'object_name': 'TypeSocial'},
+            'icon': ('django.db.models.fields.CharField', [], {'max_length': '80'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '30'})
         }
     }
 

@@ -1,34 +1,59 @@
 #!/usr/bin/env python
 # coding: utf-8
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render, get_object_or_404
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 
-from .models import Member
-from .forms import MembroForm
+from django.views.generic import TemplateView
+from django.views.generic.edit import FormView
+
+from apps.decorators import RegisterValidMixin, LoginRequiredMixin
+
+from .models import Member, Social
+from .forms import MemberForm, SocialFormset
 
 
-@login_required
-def redirect_form(request, template='membros/cadastrar.html'):
-    if request.user.member_profile:
-        return redirect('done')
+class RegisterView(LoginRequiredMixin, FormView):
+    form_class = MemberForm
+    second_form_class = SocialFormset
+    template_name = 'membros/v2/register.html'
 
-    form = MembroForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        member = form.save(commit=False)
-        member.user = request.user
-        member.save()
-        return redirect('done')
-    
-    return render(request, template, {'formset': form})
+    def get_context_data(self, **kwargs):
+        context = super(FormView, self).get_context_data(**kwargs)
+        if self.request.method == 'POST':
+                context['formset'] = self.second_form_class(self.request.POST)
+        else:
+            context['formset'] = self.second_form_class()
 
-@login_required
-def done(request):
-    if request.user.member_profile:
-        """Login complete view, display user data"""
-        return render(request, 'done.html',{'member': member})
-    else:
-        return redirect('redirect_form')
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        formset = context['formset']
+
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+
+        if formset.is_valid():
+            for form_social in formset.forms:
+                if form_social.is_valid() and form_social.cleaned_data['url']:
+                    social = form_social.save(commit=False)
+                    social.member = self.object
+                    social.save()
+
+            return redirect('account')
+        else:
+            return self.render_to_response(self.get_context_data(form=form))
+
+    def get(self, request, *args, **kwargs):
+        if Member.objects.filter(user=self.request.user).exists():
+            return redirect('account')
+        return super(RegisterView, self).get(self, request, *args, **kwargs)
+
+
+class AccountView(RegisterValidMixin, TemplateView):
+    template_name = 'membros/v2/account.html'
+
 
 def detalhe(request, id, template='membros/detalhe.html'):
     membro = get_object_or_404(Member, pk=id)

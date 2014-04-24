@@ -135,7 +135,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-#    'suit',
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.flatpages',
@@ -148,10 +147,13 @@ INSTALLED_APPS = (
     'apps.contribuicoes',
 
     'south',
+    'bootstrap3',
+
     'social.apps.django_app.default',
+    'django_gravatar',
 )
 
-TTEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
 
     'apps.context_processors.social',
@@ -170,14 +172,18 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/membros/done/'
-URL_PATH = ''
+
+from django.core.urlresolvers import reverse_lazy
+
+LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = reverse_lazy('account')
+
 SOCIAL_AUTH_STRATEGY = 'social.strategies.django_strategy.DjangoStrategy'
 SOCIAL_AUTH_STORAGE = 'social.apps.django_app.default.models.DjangoStorage'
 
 SOCIAL_AUTH_GITHUB_KEY = 'dc48a352e4241cc3c810'
 SOCIAL_AUTH_GITHUB_SECRET = 'bcfda19b4353d1a352bb1a9fd9979a8ae93a7b6e'
+SOCIAL_AUTH_GITHUB_SCOPE = ['user']
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -206,9 +212,4 @@ LOGGING = {
             'propagate': True,
         },
     }
-}
-
-
-SUIT_CONFIG = {
-    'ADMIN_NAME': 'Python-MG',
 }

@@ -1,3 +1,20 @@
 {% load url from future %}
 
 <a href="{% url 'social:begin' 'github' %}">Login with Github</a>
+
+<br />
+<br />
+
+{% if form.errors %}
+<p> Invalid username/password combination, please try again</p>
+{% endif %}
+
+<form action="{% url 'django.contrib.auth.views.login' %}" method="post">
+{% csrf_token %}
+{{ form.username.label }}{{ form.username }}
+<br />
+{{ form.password.label }}{{ form.password }}
+<input type="submit" id="submit" value="Confirmar" /> or 
+<a href="{% url 'social:begin' 'github' %}">Login with Github</a>
+<input type="hidden" name="next" value="{{ next }}" />
+</form>

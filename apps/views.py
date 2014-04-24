@@ -15,13 +15,7 @@ def home(request, template='v2/index.html'):
     }
     return render(request, template, context)
 
+
 def logout(request):
-    """Logs out user"""
-    auth_logout(request)
-    return redirect('home')
-
-
-def login(request):
-    if request.user.is_authenticated():
-        return redirect('done')
-    return render(request, 'login.html', {})
+	auth_logout(request)
+	return redirect('home')
