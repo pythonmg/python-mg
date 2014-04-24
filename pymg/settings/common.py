@@ -135,7 +135,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'suit',
+#    'suit',
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.flatpages',
