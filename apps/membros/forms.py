@@ -36,3 +36,7 @@ SocialFormset = inlineformset_factory(
     form=SocialForm,
     can_delete=False,
 )
+
+
+class SearchForm(forms.Form):
+    name = forms.CharField(label=u'Nome', max_length=100)
