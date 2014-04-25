@@ -8,7 +8,7 @@ urlpatterns = patterns(
     url(r'^logout/$', 'logout', name='logout'),
 
     url(r'^noticias/', include('apps.noticias.urls')),
-    url(r'^membros/', include('apps.membros.urls')),
+    url(r'^members/', include('apps.membros.urls', namespace='members')),
     url(r'^eventos/', include('apps.eventos.urls')),
     url(r'^projetos/', include('apps.projetos.urls')),
     url(r'^contribuicoes/', include('apps.contribuicoes.urls')),

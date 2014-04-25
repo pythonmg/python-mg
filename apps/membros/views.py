@@ -4,12 +4,13 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.core.urlresolvers import reverse, reverse_lazy
 
 from django.views.generic import TemplateView
+from django.views.generic.list import ListView
 from django.views.generic.edit import FormView
 
 from apps.decorators import RegisterValidMixin, LoginRequiredMixin
 
 from .models import Member, Social
-from .forms import MemberForm, SocialFormset
+from .forms import MemberForm, SocialFormset, SearchForm
 
 
 class RegisterView(LoginRequiredMixin, FormView):
@@ -53,6 +54,21 @@ class RegisterView(LoginRequiredMixin, FormView):
 
 class AccountView(RegisterValidMixin, TemplateView):
     template_name = 'membros/v2/account.html'
+
+
+class ListMemberView(ListView):
+    model = Member
+    paginate_by = 20
+    context_object_name = 'member_list'
+    template_name = 'membros/v2/list.html'
+
+    def get_queryset(self):
+        queryset = Member.objects.all()
+        if self.request.GET.__contains__('q'):
+            queryset = queryset.filter(
+                user__first_name__icontains=self.request.GET.get('q'))
+
+        return queryset
 
 
 def detalhe(request, id, template='membros/detalhe.html'):

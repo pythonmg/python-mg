@@ -31,6 +31,7 @@
                         <ul class="nav navbar-nav">
                             {% block "main-menu-items" %}
                             <li class="active"><a href="#">Home</a></li>
+                            <li><a href="{% url 'members:list' %}">Membros</a>
                             <li><a href="#">Empresas</a></li>
                             <li><a href="#">Eventos</a></li>
                             <li><a href="#">Contribuição</a></li>
@@ -40,7 +41,7 @@
                         {% endblock %}
                         <div class="navbar-text navbar-right">
                         {% if user.is_authenticated %}
-                        <a href="{% url 'account' %}">
+                        <a href="{% url 'members:account' %}">
                         <img src="{% gravatar_url user.email 20 %}"> {{ user.username }}
                         </a> | 
                         <a href="{% url 'logout' %}"><span class="glyphicon glyphicon-off" style="margin-right: 5px;"></span></a>
