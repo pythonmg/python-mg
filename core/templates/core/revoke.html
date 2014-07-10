@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>User logged, {{ request.user.get_full_name }}!</h2>
+{% endblock %}

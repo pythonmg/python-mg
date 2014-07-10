@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Start homepage PUG-MG</h1>
+
+<br />
+<a href="{% url 'social:begin' 'google-oauth2' %}">Google OAuth2</a>
+<br />
+<a href="{% url 'social:begin' 'github' %}">Github</a>
+{% endblock %}
