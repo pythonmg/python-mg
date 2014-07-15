@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     # third-party applications
     'south',
     'social.apps.django_app.default',
+    'bootstrap3',
 
     # my applications
     'core',
@@ -119,7 +120,7 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-LOGIN_REDIRECT_URL = '/revoke'
+LOGIN_REDIRECT_URL = '/'
 
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'email', 'first_name']
 

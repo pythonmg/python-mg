@@ -4,35 +4,171 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Igor Santos Website - Developer Python">
-  <meta name="author" content="Igor Santos">
-  <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="{% static 'ico/favicon.ico' %}">
 
-  <title>Welcome igorsantos.net</title>
+  <title>PUG-MG</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
   <!-- Custom styles for this template -->
-  <link href="{% static 'css/main.css' %}" rel="stylesheet">
-  {% block css %}{% endblock %}
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="{% static 'js/hover.zoom.js' %}"></script>
-  <script src="{% static 'js/hover.zoom.conf.js' %}"></script>
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-  <![endif]-->
+  <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
+  <link rel="stylesheet" href="{% static 'css/custom.css' %}">
 </head>
 <body>
-{% block content %}
-{% endblock %}
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
+<!-- .navbar -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">PUG-MG</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <!-- <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Nav header</li>
+            <li><a href="#">Separated link</a></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul> -->
+      <!-- <form class="navbar-form navbar-left">
+        <input type="text" class="form-control col-lg-8" placeholder="Search">
+      </form> -->
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+<!-- /.navbar -->
+
+<!-- .container -->
+<div class="container">
+<!--
+  <div class="header">
+    <h1 class="title">The Bootstrap Blog</h1>
+    <p class="lead description">The official example template of creating a blog with Bootstrap.</p>
+  </div> -->
+
+  <div class="row">
+    <!-- .main -->
+    <div class="col-sm-8 main">
+      {% block content %}
+      {% endblock %}
+    </div><!-- /.main -->
+
+    <!-- .sidebar-module -->
+    <div class="col-sm-3 col-sm-offset-1">
+      <div class="sidebar-module sidebar-module-inset">
+        {% if request.user.is_authenticated %}
+          <h4>Welcome, {{ request.user.first_name }}</h4>
+          <div class="form-group">
+            <a class="btn btn-danger btn-sm" href="{% url 'core:logout' %}"><i class="glyphicon glyphicon-off"></i>&nbsp;&nbsp;Logout</a>
+          </div>
+        {% else %}
+        <h4>Sign in</h4>
+        <form action="{% url 'core:login' %}" method="POST">
+          {% csrf_token %}
+          {% for error in form.non_field_errors %}
+          <div class="alert alert-dismissable alert-warning">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ error }}</strong>
+          </div>
+          {% endfor %}
+          {% for error in form.username.errors %}
+          <div class="alert alert-dismissable alert-warning">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ error }}</strong>
+          </div>
+          {% endfor %}
+          <div class="form-group">
+            <input type="text" class="form-control" id="id_username" name="username"  placeholder="Username or email">
+          </div>
+          {% for error in form.password.errors %}
+          <div class="alert alert-dismissable alert-warning">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ error }}</strong>
+          </div>
+          {% endfor %}
+          <div class="form-group">
+            <input type="password" class="form-control" id="id_password" name="password" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;Connect</button>
+            <a class="btn btn-default btn-sm" href="{% url 'core:register' %}"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;Register</a>
+          </div>
+        </form>
+        <h4>or connect with</h4>
+        <div class="btn-group">
+          <a class="btn btn-block btn-social btn-sm btn-github" href="{% url 'social:begin' 'github' %}">
+            <i class="fa fa-github"></i>Github
+          </a>
+          <a class="btn btn-block btn-social btn-sm btn-google-plus" href="{% url 'social:begin' 'google-oauth2' %}">
+            <i class="fa fa-google-plus"></i>Google Plus
+          </a>
+        </div>
+        {% endif %}
+      </div>
+      <div class="sidebar-module">
+        <h4>Archives</h4>
+        <ol class="list-unstyled">
+          <li><a href="#">March 2014</a></li>
+          <li><a href="#">February 2014</a></li>
+          <li><a href="#">January 2014</a></li>
+          <li><a href="#">December 2013</a></li>
+          <li><a href="#">November 2013</a></li>
+          <li><a href="#">October 2013</a></li>
+          <li><a href="#">September 2013</a></li>
+          <li><a href="#">August 2013</a></li>
+          <li><a href="#">July 2013</a></li>
+          <li><a href="#">June 2013</a></li>
+          <li><a href="#">May 2013</a></li>
+          <li><a href="#">April 2013</a></li>
+        </ol>
+      </div>
+      <div class="sidebar-module">
+        <h4>Elsewhere</h4>
+        <ol class="list-unstyled">
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ol>
+      </div>
+    </div><!-- /.blog-sidebar -->
+
+  </div><!-- /.row -->
+
+</div><!-- /.container -->
+
+<div class="footer">
+  <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+  <p>
+    <a href="#">Back to top</a>
+  </p>
+</div>
+<!-- Bootstrap core JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
-{% block js %}{% endblock %}
+
 </body>
 </html>
