@@ -40,15 +40,20 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     # third-party applications
     'south',
     'social.apps.django_app.default',
     'bootstrap3',
+    'django_comments',
 
     # my applications
+    'blog',
     'core',
 )
+
+SITE_ID = 1
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

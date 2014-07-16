@@ -1,0 +1,27 @@
+{% load bootstrap3 %}
+{% load comments %}
+
+{% get_comment_form for object as form %}
+<h5>Comments</h5>
+<form class="form" action="{% comment_form_target %}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{% url 'blog:detail' object.slug %}" />
+  <div class="row">
+    <div class="col-md-6">
+      {% bootstrap_field form.name %}
+      {% bootstrap_field form.email %}
+      {% bootstrap_field form.url %}
+    </div>
+    <div class="col-md-6">
+      {% bootstrap_field form.comment %}
+    </div>
+  </div>
+  {% buttons %}
+      <button type="submit" class="btn btn-primary btn-sm" name="submit">
+        {% bootstrap_icon "ok" %} Post
+      </button>
+      <button type="submit" class="btn btn-primary btn-sm" name="preview">
+        {% bootstrap_icon "ok" %} Preview
+      </button>
+  {% endbuttons %}
+</form>

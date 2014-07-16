@@ -29,7 +29,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">PUG-MG</a>
+      <a class="navbar-brand" href="/">PUG-MG</a>
     </div>
     <div class="navbar-collapse collapse">
       <!-- <ul class="nav navbar-nav">
@@ -82,6 +82,15 @@
       <div class="sidebar-module sidebar-module-inset">
         {% if request.user.is_authenticated %}
           <h4>Welcome, {{ request.user.first_name }}</h4>
+          <h5>Posts</h5>
+          <ol class="list-unstyled">
+            <li><a href="{% url 'blog:create' %}">Write a post</a></li>
+            <li><a href="{% url 'blog:list' %}">My posts</a></li>
+          </ol>
+          <h5>Settings</h5>
+          <ol class="list-unstyled">
+            <li><a href="#">Reset password</a></li>
+          </ol>
           <div class="form-group">
             <a class="btn btn-danger btn-sm" href="{% url 'core:logout' %}"><i class="glyphicon glyphicon-off"></i>&nbsp;&nbsp;Logout</a>
           </div>

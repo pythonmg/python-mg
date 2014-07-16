@@ -8,8 +8,10 @@ admin.autodiscover()
 urlpatterns = patterns(
     '',
     url(r'', include('core.urls', namespace='core')),
+    url(r'^post/', include('blog.urls', namespace='blog')),
     url(r'^social/', include('social.apps.django_app.urls',
         namespace='social')),
+    (r'^comments/', include('django_comments.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
 

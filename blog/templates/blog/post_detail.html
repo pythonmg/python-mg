@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load comments %}
+
+{% block content %}
+<div class="post">
+  <h2 class="post-title">{{ object.title }}</h2>
+  {% get_comment_count for post as comment_count %}
+  <p class="post-meta">{{ object.updated_on }} | comments {{ comment_count }} | <a href="#">{{ object.author.get_full_name }}</a></p>
+  {{ object.body|safe }}
+</div><!-- /.post -->
+
+<div class="comment-form">
+  {% render_comment_form for object %}
+</div>
+
+<hr />
+
+<div class="comment-list">
+  {% get_comment_list for object as comment_list %}
+  {% for comment in comment_list %}
+    <div class="alert alert-dismissable" style="padding: 0px;!important">
+      <h4>{{ comment.user_name }} says:</h4>
+      <span class="block">in {{ comment.submit_date }}</span>
+      <p>{{ comment.comment }}</p>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -144,6 +144,11 @@ body {
   color: #999;
 }
 
+.post-read-more {
+  margin-top: -50px;
+  margin-bottom: 40px;
+}
+
 
 /*
  * Footer
