@@ -9,20 +9,27 @@
   {{ object.body|safe }}
 </div><!-- /.post -->
 
-<div class="comment-form">
-  {% render_comment_form for object %}
+<div class="comment-content">
+  <h5>Comments ({{ comment_count }})</h5>
+  <hr />
+  <div class="comment-list">
+    {% render_comment_list for object %}
+  </div>
+  <button class="btn btn-primary btn-sm comment-btn"><i class="glyphicon glyphicon-plus"></i>&nbsp;&nbsp;Post comment</button>
+  <div class="comment-form">
+    {% render_comment_form for object %}
+  </div>
 </div>
+{% endblock %}
 
-<hr />
+{% block script %}
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".comment-btn").click(function(event){
+    $(".comment-form").toggle('slow');
+  });
 
-<div class="comment-list">
-  {% get_comment_list for object as comment_list %}
-  {% for comment in comment_list %}
-    <div class="alert alert-dismissable" style="padding: 0px;!important">
-      <h4>{{ comment.user_name }} says:</h4>
-      <span class="block">in {{ comment.submit_date }}</span>
-      <p>{{ comment.comment }}</p>
-    </div>
-  {% endfor %}
-</div>
+  $('button.comment-btn').click();
+});
+</script>
 {% endblock %}

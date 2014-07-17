@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'bootstrap3',
     'django_comments',
+    'django_gravatar',
 
     # my applications
     'blog',
@@ -126,6 +127,8 @@ AUTHENTICATION_BACKENDS = (
 )
 
 LOGIN_REDIRECT_URL = '/'
+
+GRAVATAR_DEFAULT_SIZE = 50
 
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'email', 'first_name']
 

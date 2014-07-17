@@ -1,4 +1,5 @@
 {% load static %}
+{% load gravatar %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -89,7 +90,7 @@
           </ol>
           <h5>Settings</h5>
           <ol class="list-unstyled">
-            <li><a href="#">Reset password</a></li>
+            <li><a href="{% url 'core:password_change' %}">Change password</a></li>
           </ol>
           <div class="form-group">
             <a class="btn btn-danger btn-sm" href="{% url 'core:logout' %}"><i class="glyphicon glyphicon-off"></i>&nbsp;&nbsp;Logout</a>
@@ -178,6 +179,6 @@
 <!-- Bootstrap core JavaScript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
-
+{% block script %}{% endblock %}
 </body>
 </html>

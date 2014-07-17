@@ -4,7 +4,6 @@
 
 body {
 /*  font-family: Georgia, "Times New Roman", Times, serif;*/
-  min-height: 2000px;
   color: #555;
   padding-top: 70px;
 }
@@ -97,6 +96,7 @@ body {
 .main {
   font-size: 18px;
   line-height: 1.5;
+  padding-bottom: 25px;
 }
 
 /* Sidebar modules for boxing content */
