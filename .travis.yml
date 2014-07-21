@@ -2,9 +2,9 @@ language: python
 python:
   - "2.7"
 env:
-  - DJANGO=1.5.5 DB=sqlite3
+  - DJANGO=1.6.5 DB=sqlite3
 install:
-  - pip install -r requirements/dev.txt --use-mirrors
+  - pip install -r requirements.txt --use-mirrors
 script:
   - export DJANGO_SETTINGS_MODULE=pymg.settings.test
   - python manage.py syncdb --noinput
