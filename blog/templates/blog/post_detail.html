@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load comments %}
+
+{% block content %}
+<div class="post">
+  <h2 class="post-title">{{ object.title }}</h2>
+  {% get_comment_count for post as comment_count %}
+  <p class="post-meta">{{ object.updated_on }} | comments {{ comment_count }} | <a href="#">{{ object.author.get_full_name }}</a></p>
+  {{ object.body|safe }}
+</div><!-- /.post -->
+
+<div class="comment-content">
+  <h5>Comments ({{ comment_count }})</h5>
+  <hr />
+  <div class="comment-list">
+    {% render_comment_list for object %}
+  </div>
+  <button class="btn btn-primary btn-sm comment-btn"><i class="glyphicon glyphicon-plus"></i>&nbsp;&nbsp;Post comment</button>
+  <div class="comment-form">
+    {% render_comment_form for object %}
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".comment-btn").click(function(event){
+    $(".comment-form").toggle('slow');
+  });
+
+  $('button.comment-btn').click();
+});
+</script>
+{% endblock %}
