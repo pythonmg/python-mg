@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>My posts</h2>
+{% for post in object_list %}
+    <a href="{% url 'blog:detail' post.slug %}">{{ post.title }}</a><br />
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load comments %}
+
+{% block content %}
+  {% for post in object_list %}
+  <div class="post">
+    <h2 class="post-title">{{ post.title }}</h2>
+    {% get_comment_count for post as comment_count %}
+    <p class="post-meta">{{ post.updated_on }} | comments {{ comment_count }} | <a href="#">{{ post.author.get_full_name }}</a></p>
+    {{ post.body|safe|truncatechars:500 }}
+  </div><!-- /.post -->
+  <div class="post-read-more">
+    <a class="btn btn-primary btn-sm" href="{% url 'blog:detail' post.slug %}">Read more</a>
+  </div>
+  {% empty %}
+    <h4>No posts yet.</h4>
+  {% endfor %}
+
+  <ul class="pager">
+    {% if page_obj.has_previous %}
+    <li><a href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+    {% endif %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
+    {% endif %}
+  </ul>
+{% endblock %}
