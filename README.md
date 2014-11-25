@@ -36,6 +36,12 @@ Rode os testes
 
 `./manage.py test --settings=pymg.settings.test`
 
+Feeds
+-----
+
+`./manage.py loaddata data/feeds.json`
+`./manage.py update_feeds`
+
 
 Wiki
 ------
