@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     # my applications
     'blog',
     'core',
+    'feeds',
 )
 
 SITE_ID = 1
