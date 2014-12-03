@@ -42,4 +42,4 @@ nosetests.xml
 media/
 
 # django-decouple conf
-.env
+*.env
