@@ -1,0 +1,28 @@
+header {
+  height: 200px;
+}
+.box-logo img {
+  width: 120px;
+  height: 130px;
+  margin: 25px 10px 25px 25px;
+  float: left;
+}
+.box-logo h1 {
+  float: left;
+}
+.box-menu {
+  float: right;
+  padding: 65px;
+}
+.box-menu .nav li {
+  float: left;
+}
+.box-content .box-feeds {
+  padding: 0 35px;
+}
+.box-content .box-feeds .body:nth-child(odd) {
+  text-align: right;
+}
+.box-content .box-right {
+  padding-right: 35px;
+}
