@@ -16,7 +16,6 @@ from unipath import Path
 
 BASE_DIR = Path(__file__).ancestor(3)
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
