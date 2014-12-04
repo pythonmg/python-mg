@@ -1,0 +1,7 @@
+{% load static %}
+<img src={% static 'img/twitter.jpg' %} style='width:50%;'>
+<ul>
+{% for tweet in tweets %}
+	<li>{{ tweet.text|safe }}</li>
+{% endfor %}
+</ul>

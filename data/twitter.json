@@ -1,0 +1,1 @@
+[{"pk": 1, "model": "twitter_app.twitterhashtag", "fields": {"name": "pugmg"}}, {"pk": 2, "model": "twitter_app.twitterhashtag", "fields": {"name": "pythonmg"}}, {"pk": 1, "model": "twitter_app.twitteruser", "fields": {"name": "pythonmg"}}]

@@ -39,8 +39,22 @@ Rode os testes
 Feeds
 -----
 
+Importe os feeds
+
 `./manage.py loaddata data/feeds.json`
+
 `./manage.py update_feeds`
+
+Tweets
+
+Importe as hashtags e os usuarios
+
+`./manage.py loaddata data/twitter.json`
+
+`./manage.py import_tweets`
+
+
+Veja a pagina inicial.
 
 
 Wiki

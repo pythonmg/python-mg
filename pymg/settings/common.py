@@ -16,7 +16,6 @@ from unipath import Path
 
 BASE_DIR = Path(__file__).ancestor(3)
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
@@ -53,6 +52,7 @@ INSTALLED_APPS = (
     'blog',
     'core',
     'feeds',
+    'twitter_app',
 )
 
 SITE_ID = 1
@@ -148,3 +148,10 @@ SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET', default='')
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY', default='')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET', default='')
 SOCIAL_AUTH_GOOGLE_OAUTH2_USE_DEPRECATED_API = True
+
+#twitter settings
+TWITTER_APP_KEY=config('TWITTER_APP_KEY', default='')
+TWITTER_APP_SECRET=config('TWITTER_APP_SECRET', default='')
+TWITTER_OAUTH_TOKEN=config('TWITTER_OAUTH_TOKEN', default='')
+TWITTER_OAUTH_TOKEN_SECRET=config('TWITTER_OAUTH_TOKEN_SECRET', default='')
+

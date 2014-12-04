@@ -8,3 +8,8 @@ def reset_feeds():
     local('./manage.py syncdb')
     local('./manage.py loaddata data/feeds.json')
     local('./manage.py update_feeds')
+
+def update_data():
+	local('./manage.py update_feeds')
+	local('./manage.py import_tweets')
+
