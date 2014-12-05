@@ -1,27 +1,12 @@
 {% extends 'base.html' %}
-{% load comments %}
 
-{% block content %}
+{% block crumb %}
   {% for feed_item in object_list %}
-  <div class="post">
-    <h2 class="post-title"><a href="{{ feed_item.link }}">{{ feed_item.title }}</a></h2>
-    <p class="post-meta">{{ feed_item.feed.title }} | {{ feed_item.date_modified }} | <a href="#">{{ feed_item.author }}</a></p>
-    {{ feed_item.summary|safe|truncatechars:200 }}
-    
-  </div><!-- /.post -->
-  <div class="post-read-more">
-    <a class="btn btn-primary btn-sm" href="{{ feed_item.link }}">Read more</a>
+  <div class="body">
+    <h2>{{ feed_item.title }}</h2>
+    <span class="meta">{{ feed_item.date_modified }} | {{ feed_item.author }}</span>
+    <p>{{ feed_item.summary|safe|truncatechars:300 }}</p>
+    <a href="{{ feed_item.link }}" title="Read more" target="_blank">read more</a>
   </div>
-  {% empty %}
-    <h4>No posts yet.</h4>
   {% endfor %}
-
-  <ul class="pager">
-    {% if page_obj.has_previous %}
-    <li><a href="?page={{ page_obj.previous_page_number }}">Previous Page</a></li>
-    {% endif %}
-    {% if page_obj.has_next %}
-      <li><a href="?page={{ page_obj.next_page_number }}">Next Page</a></li>
-    {% endif %}
-  </ul>
 {% endblock %}

@@ -1,4 +1,5 @@
 {% load static %}
+{% load gravatar %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,63 +20,48 @@
 <body>
 <header>
   <div class="box-logo">
-    <img src="" alt="Logo Python"/>
-    <h1>Python Users Group - Minas</h1>
+    <img src="{% static 'img/logo-homepage.png' %}" alt="Python Users Group - Minas" />
   </div>
   <div class="box-menu">
     <ul class="nav">
       <li>
-        <a href="#" title="Home"><i class="icon ic-menu ic-python"></i>Home</a>
+        <a href="{% url 'core:homepage' %}" title="Homepage"><i class="icon ic-menu"></i>Home</a>
       </li>
       <li>
-        <a href="#" title="Home"><i class="icon ic-menu ic-python"></i>Membros</a>
+        <a href="#" title="Members"><i class="icon ic-menu"></i>Members</a>
       </li>
       <li>
-        <a href="#" title="Home"><i class="icon ic-menu ic-python"></i>Projetos</a>
+        <a href="#" title="Projects"><i class="icon ic-menu"></i>Projects</a>
       </li>
       <li>
-        <a href="#" title="Home"><i class="icon ic-menu ic-python"></i>Contato</a>
+        <a href="#" title="Contact us"><i class="icon ic-menu"></i>Contact us</a>
       </li>
     </ul>
   </div>
 </header>
 <div class="row box-content">
-  <div class="col-xs-8 box-feeds">
-    {% block feeds %}
+  <div class="col-xs-8 box-crumb">
+    {% block crumb %}
     {% endblock %}
   </div>
   <div class="col-xs-4 box-right">
     <div class="row box-members">
       <h3>Members</h3>
       <div class="row body">
+        {% for member in members %}
         <div class="col-xs-3">
-          <img src="" alt="My Picture" />
-          <span>My name</span>
+          {% gravatar user.email 60 %}
+          <span>{{ member.get_full_name }}</span>
         </div>
-        <div class="col-xs-3">
-          <img src="" alt="My Picture" />
-          <span>My name</span>
-        </div>
-        <div class="col-xs-3">
-          <img src="" alt="My Picture" />
-          <span>My name</span>
-        </div>
-        <div class="col-xs-3">
-          <img src="" alt="My Picture" />
-          <span>My name</span>
-        </div>
-        <div class="col-xs-3">
-          <img src="" alt="My Picture" />
-          <span>My name</span>
-        </div>
-        <div class="col-xs-3">
-          <img src="" alt="My Picture" />
-          <span>My name</span>
-        </div>
+        {% endfor %}
       </div>
       <div class="box-register">
-        <a href="#" title="Github">Github</a>
-        <a href="#" title="Google Plus">Google+</a>
+        <a href="{% url 'social:begin' 'github' %}" title="Register Github">
+          <i class="fa fa-github"></i>Github
+        </a>
+        <a href="{% url 'social:begin' 'google-oauth2' %}" title="Register Google+">
+          <i class="fa fa-google-plus"></i>Google+
+        </a>
       </div>
     </div>
     <div class="row box-pyjobs">
