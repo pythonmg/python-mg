@@ -10,175 +10,108 @@
   <meta name="author" content="">
   <link rel="shortcut icon" href="{% static 'ico/favicon.ico' %}">
 
-  <title>PUG-MG</title>
+  <title>Minas - Python Users Group</title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-  <!-- Custom styles for this template -->
-  <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
-  <link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
-  <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
-<!-- .navbar -->
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">PUG-MG</a>
+<header>
+  <nav class="navbar navbar-fixed-top bg-gradient" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand box-logo" href="#">
+          <img src="{% static 'img/logo-homepage.png' %}" alt="Python Users Group - Minas" />
+        </a>
+      </div>
+      <div class="collapse navbar-collapse box-menu" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="{% url 'core:homepage' %}" title="Homepage"><i class="icon ic-menu"></i>Home</a>
+          </li>
+          <li>
+            <a href="#" title="Members"><i class="icon ic-menu"></i>Members</a>
+          </li>
+          <li>
+            <a href="#" title="Projects"><i class="icon ic-menu"></i>Projects</a>
+          </li>
+          <li>
+            <a href="#" title="Contact us"><i class="icon ic-menu"></i>Contact us</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="navbar-collapse collapse">
-      <!-- <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">Nav header</li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-      </ul> -->
-      <!-- <form class="navbar-form navbar-left">
-        <input type="text" class="form-control col-lg-8" placeholder="Search">
-      </form> -->
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
-</div>
-<!-- /.navbar -->
-
-<!-- .container -->
+  </nav>
+</header>
 <div class="container">
-<!--
-  <div class="header">
-    <h1 class="title">The Bootstrap Blog</h1>
-    <p class="lead description">The official example template of creating a blog with Bootstrap.</p>
-  </div> -->
-
-  <div class="row">
-    <!-- .main -->
-    <div class="col-sm-8 main">
-      {% block content %}
+  <div class="row box-content">
+    <div class="col-md-8 box-crumb">
+      {% block crumb %}
       {% endblock %}
-    </div><!-- /.main -->
-
-    <!-- .sidebar-module -->
-    <div class="col-sm-3 col-sm-offset-1">
-      <div class="sidebar-module sidebar-module-inset">
-        {% if request.user.is_authenticated %}
-          <h4>Welcome, {{ request.user.first_name }}</h4>
-          <h5>Posts</h5>
-          <ol class="list-unstyled">
-            <li><a href="{% url 'blog:create' %}">Write a post</a></li>
-            <li><a href="{% url 'blog:list' %}">My posts</a></li>
-          </ol>
-          <h5>Settings</h5>
-          <ol class="list-unstyled">
-            <li><a href="{% url 'core:password_change' %}">Change password</a></li>
-          </ol>
-          <div class="form-group">
-            <a class="btn btn-danger btn-sm" href="{% url 'core:logout' %}"><i class="glyphicon glyphicon-off"></i>&nbsp;&nbsp;Logout</a>
-          </div>
-        {% else %}
-        <h4>Sign in</h4>
-        <form action="{% url 'core:login' %}" method="POST">
-          {% csrf_token %}
-          {% for error in form.non_field_errors %}
-          <div class="alert alert-dismissable alert-warning">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>{{ error }}</strong>
+    </div>
+    <div class="col-md-4 box-right">
+      <div class="row well box-social">
+        <h4>Social</h4>
+        <div class="row body">
+          <ul class="nav nav-pills">
+            <li><a href="https://groups.google.com/forum/?fromgroups#!forum/python-mg">Google Groups</a></li>
+            <li><a href="http://www.meetup.com/Belo-Horizonte-Python-User-Group/">Meetup</a></li>
+            <li><a href="https://www.youtube.com/channel/UCrQjZ8bHePsrAqaKgSmKPPQ">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="row well box-members">
+        <h4>Members</h4>
+        <div class="row body">
+          {% for member in members %}
+          <div class="col-xs-3">
+            {% gravatar user.email 60 %}
+            <span>{{ member.get_full_name }}</span>
           </div>
           {% endfor %}
-          {% for error in form.username.errors %}
-          <div class="alert alert-dismissable alert-warning">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>{{ error }}</strong>
-          </div>
-          {% endfor %}
-          <div class="form-group">
-            <input type="text" class="form-control" id="id_username" name="username"  placeholder="Username or email">
-          </div>
-          {% for error in form.password.errors %}
-          <div class="alert alert-dismissable alert-warning">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>{{ error }}</strong>
-          </div>
-          {% endfor %}
-          <div class="form-group">
-            <input type="password" class="form-control" id="id_password" name="password" placeholder="Password">
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;Connect</button>
-            <a class="btn btn-default btn-sm" href="{% url 'core:register' %}"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;Register</a>
-          </div>
-        </form>
-        <h4>or connect with</h4>
-        <div class="btn-group">
-          <a class="btn btn-block btn-social btn-sm btn-github" href="{% url 'social:begin' 'github' %}">
+        </div>
+        <div class="box-register">
+          <a href="{% url 'social:begin' 'github' %}" title="Register Github">
             <i class="fa fa-github"></i>Github
           </a>
-          <a class="btn btn-block btn-social btn-sm btn-google-plus" href="{% url 'social:begin' 'google-oauth2' %}">
-            <i class="fa fa-google-plus"></i>Google Plus
+          <a href="{% url 'social:begin' 'google-oauth2' %}" title="Register Google+">
+            <i class="fa fa-google-plus"></i>Google+
           </a>
         </div>
-        {% endif %}
       </div>
-      <div class="sidebar-module">
-      {% include "twitter/twitter_box.html" %}
+      <div class="row well box-pyjobs">
+        <h4>PyJobs</h4>
+        <div class="body">
+        </div>
       </div>
-      <div class="sidebar-module">
-        <h4>Archives</h4>
-        <ol class="list-unstyled">
-          <li><a href="#">March 2014</a></li>
-          <li><a href="#">February 2014</a></li>
-          <li><a href="#">January 2014</a></li>
-          <li><a href="#">December 2013</a></li>
-          <li><a href="#">November 2013</a></li>
-          <li><a href="#">October 2013</a></li>
-          <li><a href="#">September 2013</a></li>
-          <li><a href="#">August 2013</a></li>
-          <li><a href="#">July 2013</a></li>
-          <li><a href="#">June 2013</a></li>
-          <li><a href="#">May 2013</a></li>
-          <li><a href="#">April 2013</a></li>
-        </ol>
+      <div class="row well box-twitter">
+        <h4>TwitterAPI</h4>
+        <div class="body">
+          <ul class="nav">
+          {% for tweet in tweets %}
+            <li>{{ tweet.text|safe }}</li>
+          {% endfor %}
+          </ul>
+        </div>
       </div>
-      <div class="sidebar-module">
-        <h4>Elsewhere</h4>
-        <ol class="list-unstyled">
-          <li><a href="https://github.com/python-mg/">GitHub</a></li>
-          <li><a href="https://twitter.com/pythonmg">Twitter</a></li>
-          <li><a href="https://groups.google.com/forum/#!topic/python-mg">Grupo de Discussao</a></li>
-        </ol>
-      </div>
-    </div><!-- /.blog-sidebar -->
-
-  </div><!-- /.row -->
-
-</div><!-- /.container -->
-
-<div class="footer">
-  <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-  <p>
-    <a href="#">Back to top</a>
-  </p>
+    </div>
+  </div>
 </div>
+<footer>
+  <div class="row">
+    <div class="col-lg-12">
+      <p>Copyright &copy; Python Users Group Minas - 2014</p>
+    </div>
+  </div>
+</footer>
 <!-- Bootstrap core JavaScript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>

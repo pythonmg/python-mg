@@ -1,27 +1,30 @@
 {% extends 'base.html' %}
-{% load comments %}
 
-{% block content %}
+{% block crumb %}
   {% for feed_item in object_list %}
-  <div class="post">
-    <h2 class="post-title"><a href="{{ feed_item.link }}">{{ feed_item.title }}</a></h2>
-    <p class="post-meta">{{ feed_item.feed.title }} | {{ feed_item.date_modified }} | <a href="#">{{ feed_item.author }}</a></p>
-    {{ feed_item.summary|safe|truncatechars:200 }}
-    
-  </div><!-- /.post -->
-  <div class="post-read-more">
-    <a class="btn btn-primary btn-sm" href="{{ feed_item.link }}">Read more</a>
+  <div class="body">
+    <h2>
+      <a href="{{ feed_item.link }}">{{ feed_item.title }}</a>
+    </h2>
+    <p class="lead">
+        by <a href="#">{{ feed_item.author }}</a>
+    </p>
+    <p><span class="glyphicon glyphicon-time"></span> Posted on {{ feed_item.date_modified }} in <a href="{{ feed_item.feed.public_url }}" title="Follow us" target="_blank">{{ feed_item.feed.title }}</a></p>
+    <p>{{ feed_item.summary|safe|truncatechars:300 }}</p>
+    <a class="btn btn-primary" href="{{ feed_item.link }}" title="Read more" target="_blank">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
   </div>
-  {% empty %}
-    <h4>No posts yet.</h4>
   {% endfor %}
-
+  <hr />
   <ul class="pager">
     {% if page_obj.has_previous %}
-    <li><a href="?page={{ page_obj.previous_page_number }}">Previous Page</a></li>
+    <li class="previous">
+      <a href="?page={{ page_obj.previous_page_number }}">&larr; Older</a>
+    </li>
     {% endif %}
     {% if page_obj.has_next %}
-      <li><a href="?page={{ page_obj.next_page_number }}">Next Page</a></li>
+    <li class="next">
+      <a href="?page={{ page_obj.next_page_number }}">Newer &rarr;</a>
+    </li>
     {% endif %}
   </ul>
 {% endblock %}

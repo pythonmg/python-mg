@@ -49,7 +49,6 @@ INSTALLED_APPS = (
     'django_gravatar',
 
     # my applications
-    'blog',
     'core',
     'feeds',
     'twitter_app',
@@ -114,6 +113,9 @@ TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
 
     'social.apps.django_app.context_processors.backends',
     'social.apps.django_app.context_processors.login_redirect',
+
+    'core.context_processors.tweets',
+    'core.context_processors.members',
 )
 
 AUTHENTICATION_BACKENDS = (

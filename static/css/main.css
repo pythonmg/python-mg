@@ -1,0 +1,59 @@
+body {
+  padding-top: 170px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+header {
+  background-color: #fff;
+}
+header nav {
+  background-color: #000;
+  height: 50px;
+  margin-top: 35px;
+}
+.box-logo {
+  margin-top: -40px;
+}
+.box-menu {
+  float: right;
+  margin-top: 5px;
+}
+.box-menu .nav li {
+  float: left;
+}
+.box-menu .nav li a {
+  padding: 10px 25px;
+}
+.box-menu .nav a:hover {
+  background: none;
+}
+.box-menu .nav a:hover .ic-menu {
+  position: absolute;
+}
+.box-content .box-crumb {
+  padding: 0 35px;
+}
+.box-content .box-crumb .body:nth-child(odd), .box-twitter .nav > li:nth-child(odd) {
+  text-align: right;
+}
+.box-content .box-right {
+  padding-right: 35px;
+}
+.box-members .body > div {
+  text-align: center;
+}
+.box-twitter .nav > li:first-child {
+  border: none;
+}
+.box-twitter .nav > li {
+  border-top: 1px solid #000;
+  padding-top: 10px;
+}
+
+.icon {
+  background: url('/static/img/sprite.png') no-repeat;
+}
+.icon.ic-menu {
+  background-position: -2px -2px;
+  width: 20px;
+  height: 20px;
+  left: 0;
+}
