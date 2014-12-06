@@ -19,70 +19,98 @@
 </head>
 <body>
 <header>
-  <div class="box-logo">
-    <img src="{% static 'img/logo-homepage.png' %}" alt="Python Users Group - Minas" />
-  </div>
-  <div class="box-menu">
-    <ul class="nav">
-      <li>
-        <a href="{% url 'core:homepage' %}" title="Homepage"><i class="icon ic-menu"></i>Home</a>
-      </li>
-      <li>
-        <a href="#" title="Members"><i class="icon ic-menu"></i>Members</a>
-      </li>
-      <li>
-        <a href="#" title="Projects"><i class="icon ic-menu"></i>Projects</a>
-      </li>
-      <li>
-        <a href="#" title="Contact us"><i class="icon ic-menu"></i>Contact us</a>
-      </li>
-    </ul>
-  </div>
-</header>
-<div class="row box-content">
-  <div class="col-xs-8 box-crumb">
-    {% block crumb %}
-    {% endblock %}
-  </div>
-  <div class="col-xs-4 box-right">
-    <div class="row box-members">
-      <h3>Members</h3>
-      <div class="row body">
-        {% for member in members %}
-        <div class="col-xs-3">
-          {% gravatar user.email 60 %}
-          <span>{{ member.get_full_name }}</span>
-        </div>
-        {% endfor %}
-      </div>
-      <div class="box-register">
-        <a href="{% url 'social:begin' 'github' %}" title="Register Github">
-          <i class="fa fa-github"></i>Github
-        </a>
-        <a href="{% url 'social:begin' 'google-oauth2' %}" title="Register Google+">
-          <i class="fa fa-google-plus"></i>Google+
+  <nav class="navbar navbar-fixed-top bg-gradient" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand box-logo" href="#">
+          <img src="{% static 'img/logo-homepage.png' %}" alt="Python Users Group - Minas" />
         </a>
       </div>
-    </div>
-    <div class="row box-pyjobs">
-      <h3>PyJobs</h3>
-      <div class="body">
-      </div>
-    </div>
-    <div class="row box-twitter">
-      <h3>TwitterAPI</h3>
-      <div class="body">
-        <ul class="nav">
-        {% for tweet in tweets %}
-          <li>{{ tweet.text|safe }}</li>
-        {% endfor %}
+      <div class="collapse navbar-collapse box-menu" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="{% url 'core:homepage' %}" title="Homepage"><i class="icon ic-menu"></i>Home</a>
+          </li>
+          <li>
+            <a href="#" title="Members"><i class="icon ic-menu"></i>Members</a>
+          </li>
+          <li>
+            <a href="#" title="Projects"><i class="icon ic-menu"></i>Projects</a>
+          </li>
+          <li>
+            <a href="#" title="Contact us"><i class="icon ic-menu"></i>Contact us</a>
+          </li>
         </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="container">
+  <div class="row box-content">
+    <div class="col-md-8 box-crumb">
+      {% block crumb %}
+      {% endblock %}
+    </div>
+    <div class="col-md-4 box-right">
+      <div class="row well box-social">
+        <h4>Social</h4>
+        <div class="row body">
+          <ul class="nav nav-pills">
+            <li><a href="https://groups.google.com/forum/?fromgroups#!forum/python-mg">Google Groups</a></li>
+            <li><a href="http://www.meetup.com/Belo-Horizonte-Python-User-Group/">Meetup</a></li>
+            <li><a href="https://www.youtube.com/channel/UCrQjZ8bHePsrAqaKgSmKPPQ">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="row well box-members">
+        <h4>Members</h4>
+        <div class="row body">
+          {% for member in members %}
+          <div class="col-xs-3">
+            {% gravatar user.email 60 %}
+            <span>{{ member.get_full_name }}</span>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="box-register">
+          <a href="{% url 'social:begin' 'github' %}" title="Register Github">
+            <i class="fa fa-github"></i>Github
+          </a>
+          <a href="{% url 'social:begin' 'google-oauth2' %}" title="Register Google+">
+            <i class="fa fa-google-plus"></i>Google+
+          </a>
+        </div>
+      </div>
+      <div class="row well box-pyjobs">
+        <h4>PyJobs</h4>
+        <div class="body">
+        </div>
+      </div>
+      <div class="row well box-twitter">
+        <h4>TwitterAPI</h4>
+        <div class="body">
+          <ul class="nav">
+          {% for tweet in tweets %}
+            <li>{{ tweet.text|safe }}</li>
+          {% endfor %}
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </div>
 <footer>
-  <p>Copyright 2014</p>
+  <div class="row">
+    <div class="col-lg-12">
+      <p>Copyright &copy; Python Users Group Minas - 2014</p>
+    </div>
+  </div>
 </footer>
 <!-- Bootstrap core JavaScript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

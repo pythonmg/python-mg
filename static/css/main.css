@@ -1,13 +1,20 @@
-header {
-  height: 100px;
+body {
+  padding-top: 170px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
-.box-logo img {
-  margin: 25px 10px 25px 25px;
-  float: left;
+header {
+  background-color: #fff;
+}
+header nav {
+  background-color: #000;
+  height: 50px;
+  margin-top: 35px;
+}
+.box-logo {
+  margin-top: -40px;
 }
 .box-menu {
   float: right;
-  padding: 65px;
+  margin-top: 5px;
 }
 .box-menu .nav li {
   float: left;
@@ -24,21 +31,21 @@ header {
 .box-content .box-crumb {
   padding: 0 35px;
 }
-.box-content .box-crumb .body:nth-child(odd) {
+.box-content .box-crumb .body:nth-child(odd), .box-twitter .nav > li:nth-child(odd) {
   text-align: right;
-}
-.box-content .box-crumb .body {
-  border-bottom: 1px solid #000;
 }
 .box-content .box-right {
   padding-right: 35px;
 }
-.box-right .box-members .body > div {
+.box-members .body > div {
   text-align: center;
 }
-footer {
-  height: 60px;
-  margin-top: 50px;
+.box-twitter .nav > li:first-child {
+  border: none;
+}
+.box-twitter .nav > li {
+  border-top: 1px solid #000;
+  padding-top: 10px;
 }
 
 .icon {
