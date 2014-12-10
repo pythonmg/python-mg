@@ -13,7 +13,6 @@ class Migration(SchemaMigration):
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('guid', self.gf('django.db.models.fields.CharField')(unique=True, max_length=255)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('photo', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['meetup.Photo'], unique=True, null=True)),
             ('link', self.gf('django.db.models.fields.URLField')(max_length=200)),
         ))
         db.send_create_signal(u'meetup', ['Member'])
@@ -30,7 +29,7 @@ class Migration(SchemaMigration):
         # Adding model 'Photo'
         db.create_table(u'meetup_photo', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('guid', self.gf('django.db.models.fields.CharField')(unique=True, max_length=255)),
+            ('member', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['meetup.Member'], unique=True)),
             ('photo_link', self.gf('django.db.models.fields.URLField')(max_length=200, null=True, blank=True)),
             ('highres_link', self.gf('django.db.models.fields.URLField')(max_length=200, null=True, blank=True)),
             ('thumb_link', self.gf('django.db.models.fields.URLField')(max_length=200, null=True, blank=True)),
@@ -55,14 +54,13 @@ class Migration(SchemaMigration):
             'guid': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '255'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'link': ('django.db.models.fields.URLField', [], {'max_length': '200'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'photo': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['meetup.Photo']", 'unique': 'True', 'null': 'True'})
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '255'})
         },
         u'meetup.photo': {
             'Meta': {'object_name': 'Photo'},
-            'guid': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '255'}),
             'highres_link': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'member': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['meetup.Member']", 'unique': 'True'}),
             'photo_link': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'thumb_link': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'})
         },

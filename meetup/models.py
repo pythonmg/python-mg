@@ -16,16 +16,16 @@ class MemberManager(models.Manager):
 
         member.save()
 
-        if member.photo and meetup_member.photo:
-            member.photo.delete()
-        elif not member.photo and meetup_member.photo:
-            member.photo = Photo()
-
+        try:
+            photo = Photo.objects.get(member=member)
+        except Photo.DoesNotExist:
+            photo = Photo()
+            photo.member = member
         if meetup_member.photo:
-            member.photo.photo_link = meetup_member.photo.photo_link
-            member.photo.highres_link = meetup_member.photo.highres_link
-            member.photo.thumb_link = meetup_member.photo.thumb_link
-            member.photo.save()
+            photo.photo_link = meetup_member.photo.photo_link
+            photo.highres_link = meetup_member.photo.highres_link
+            photo.thumb_link = meetup_member.photo.thumb_link
+            photo.save()
 
         for meetup_social in meetup_member.social:
             try:
@@ -43,13 +43,25 @@ class MemberManager(models.Manager):
 class Member(models.Model):
     guid = models.CharField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
-    photo = models.OneToOneField('meetup.Photo', null=True)
     link = models.URLField()
 
     objects = MemberManager()
 
     def __unicode__(self):
         return self.name
+
+    def photo_profile(self):
+        try:
+            photo = Photo.objects.get(member=self)
+            if photo.thumb_link:
+                return photo.thumb_link
+            elif photo.highres_link:
+                return photo.highres_link
+            elif photo.photo_link:
+                return photo.photo_link
+        except Photo.DoesNotExist:
+            pass
+        return 'http://default_link'
 
 
 class Social(models.Model):
@@ -62,9 +74,10 @@ class Social(models.Model):
 
 
 class Photo(models.Model):
+    member = models.OneToOneField('meetup.Member')
     photo_link = models.URLField(blank=True, null=True)
     highres_link = models.URLField(blank=True, null=True)
     thumb_link = models.URLField(blank=True, null=True)
 
     def __unicode__(self):
-        return self.guid
+        return self.member.name
