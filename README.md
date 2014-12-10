@@ -36,22 +36,34 @@ Rode os testes
 
 `./manage.py test --settings=pymg.settings.test`
 
-Feeds
+
+Atualiza elementos do site
 -----
 
-Importe os feeds
+Feeds - Importe os feeds
 
 `./manage.py loaddata data/feeds.json`
 
 `./manage.py update_feeds`
 
-Tweets
 
-Importe as hashtags e os usuarios
+Twitter - Importe as hashtags e os usuarios
 
 `./manage.py loaddata data/twitter.json`
 
 `./manage.py import_tweets`
+
+
+Meetup - Importe os membros
+
+- Configure chave-api e url grupo no settings
+
+```
+MEETUP_API_KEY={key_developer}
+MEETUP_GROUP_URLNAME{url_name_group}
+```
+
+`./manage.py update_members`
 
 
 Veja a pagina inicial.
