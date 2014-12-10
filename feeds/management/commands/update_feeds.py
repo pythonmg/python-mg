@@ -3,7 +3,6 @@ from feeds.models import Feed, FeedItem
 import feedparser
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
-#date
 from time import mktime
 from datetime import datetime
 from django.utils.html import strip_tags
@@ -20,7 +19,7 @@ class Command(BaseCommand):
             parsed = feedparser.parse(feed.feed_url)
             for entry in parsed.entries:
                 print entry.title
-                pp.pprint(entry)                
+                pp.pprint(entry)
                 #check if it's already in the database, if not create it
                 guid = entry.id
 
@@ -41,20 +40,20 @@ class Command(BaseCommand):
                         if 'published_parsed' in entry:
                             dt = datetime.fromtimestamp(mktime(entry['published_parsed']))
                             feed_item.date_modified = dt
-                        
+
                     if entry.link.startswith('https://github.com'):
                         feed_item.author = entry.author
                         if 'updated_parsed' in entry:
                             dt = datetime.fromtimestamp(mktime(entry['updated_parsed']))
                             feed_item.date_modified = dt
-                        
-                        
+
+
                     if entry.link.startswith('https://groups.google.com'):
                         feed_item.author = entry.author
                         if 'published_parsed' in entry:
                             dt = datetime.fromtimestamp(mktime(entry['published_parsed']))
                             feed_item.date_modified = dt
-                        
+
                     # print 'before saving'
                     # print feed_item, feed_item.date_modified
                     feed_item.save()

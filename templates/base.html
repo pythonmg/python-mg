@@ -73,8 +73,13 @@
         <div class="row body">
           {% for member in members %}
           <div class="col-xs-3">
-            {% gravatar user.email 60 %}
-            <span>{{ member.get_full_name }}</span>
+            <img src="{{ member.photo_profile }}" width="60" height="60" alt="Photo {{ member.name }}">
+            <span>{{ member.name }}</span>
+            <ul class="nav nav-pills">
+              {% for social in member.other_services.all %}
+              <li><a href="{{ social.identifier }}">{{ social.name }}</a></li>
+              {% endfor %}
+            </ul>
           </div>
           {% endfor %}
         </div>

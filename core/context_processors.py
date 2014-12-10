@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from meetup.models import Member
 from twitter_app.models import Tweet
 
 
@@ -10,5 +10,5 @@ def tweets(request):
 
 def members(request):
     return {
-        'members': User.objects.filter(is_superuser=False).order_by('?')[:12]
+        'members': Member.objects.order_by('?')[:12]
     }

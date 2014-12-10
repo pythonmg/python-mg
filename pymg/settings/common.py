@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'core',
     'feeds',
     'twitter_app',
+    'meetup',
 )
 
 SITE_ID = 1
@@ -157,3 +158,6 @@ TWITTER_APP_SECRET=config('TWITTER_APP_SECRET', default='')
 TWITTER_OAUTH_TOKEN=config('TWITTER_OAUTH_TOKEN', default='')
 TWITTER_OAUTH_TOKEN_SECRET=config('TWITTER_OAUTH_TOKEN_SECRET', default='')
 
+
+MEETUP_API_KEY=config('MEETUP_API_KEY')
+MEETUP_GROUP_URLNAME='Belo-Horizonte-Python-User-Group'
