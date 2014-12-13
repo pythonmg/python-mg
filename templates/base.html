@@ -1,125 +1,142 @@
 {% load static %}
-{% load gravatar %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="Python Minas, grupo de usuários Python da região de Minas Gerais.">
+  <meta name="author" content="PUG-MG">
   <link rel="shortcut icon" href="{% static 'ico/favicon.ico' %}">
 
   <title>Minas - Python Users Group</title>
 
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/icons.css' %}">
 </head>
 <body>
-<header>
-  <nav class="navbar navbar-fixed-top bg-gradient" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand box-logo" href="#">
-          <img src="{% static 'img/logo-homepage.png' %}" alt="Python Users Group - Minas" />
-        </a>
-      </div>
-      <div class="collapse navbar-collapse box-menu" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li>
-            <a href="{% url 'core:homepage' %}" title="Homepage"><i class="icon ic-menu"></i>Home</a>
-          </li>
-          <li>
-            <a href="#" title="Members"><i class="icon ic-menu"></i>Members</a>
-          </li>
-          <li>
-            <a href="#" title="Projects"><i class="icon ic-menu"></i>Projects</a>
-          </li>
-          <li>
-            <a href="#" title="Contact us"><i class="icon ic-menu"></i>Contact us</a>
-          </li>
-        </ul>
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+      <a class="navbar-brand" rel="home" href="#">
+        <img src="" alt="Python Minas" />
+      </a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="col-sm-3 col-md-3 pull-right">
+            <form class="navbar-form" role="search">
+              <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                  <div class="input-group-btn">
+                      <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                  </div>
+              </div>
+            </form>
       </div>
     </div>
   </nav>
-</header>
-<div class="container">
-  <div class="row box-content">
-    <div class="col-md-8 box-crumb">
+
+  <header class="masthead" style="display:none;">
+    <div class="container">
+      <div class="row">
+        <div class="col col-sm-6">
+          <h1><a href="#" title="scroll down for your viewing pleasure">BNW Template</a>
+            <p class="lead">2-column Layout + Theme for Bootstrap 3</p></h1>
+        </div>
+        <div class="col col-sm-6">
+          <div class="well pull-right">
+            <img src="//placehold.it/280x100/E7E7E7">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+    <div class="row">
+        <div class="col col-sm-12">
+          <div class="panel">
+          <div class="panel-body">
+            You may want to put some news here  <span class="glyphicon glyphicon-heart-empty"></span>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container-fluid">
+    <div class="col-sm-8">
       {% block crumb %}
       {% endblock %}
     </div>
-    <div class="col-md-4 box-right">
-      <div class="row well box-social">
-        <h4>Social</h4>
-        <div class="row body">
-          <ul class="nav nav-pills">
-            <li><a href="https://groups.google.com/forum/?fromgroups#!forum/python-mg">Google Groups</a></li>
-            <li><a href="http://www.meetup.com/Belo-Horizonte-Python-User-Group/">Meetup</a></li>
-            <li><a href="https://www.youtube.com/channel/UCrQjZ8bHePsrAqaKgSmKPPQ">YouTube</a></li>
-          </ul>
-        </div>
+    <div class="col-sm-4">
+      <div class="sidebar">
+        <h3 class="highlight">Social <i class="icon-share pull-right"></i></h3>
+        <ul class="nav nav-pills highlight">
+          <li><a href="https://groups.google.com/forum/?fromgroups#!forum/python-mg">Google Groups</a></li>
+          <li><a href="http://www.meetup.com/Belo-Horizonte-Python-User-Group/">Meetup</a></li>
+          <li><a href="https://www.youtube.com/channel/UCrQjZ8bHePsrAqaKgSmKPPQ">YouTube</a></li>
+          <li><a href="https://twitter.com/PythonMG" title="Twitter">Twitter</a></li>
+        </ul>
       </div>
-      <div class="row well box-members">
-        <h4>Members</h4>
-        <div class="row body">
+      <div class="sidebar">
+        <h3 class="highlight">Members <i class="glyphicon glyphicon-user pull-right"></i></h3>
+        <div class="row box-members">
           {% for member in members %}
-          <div class="col-xs-3">
-            <img src="{{ member.photo_profile }}" width="60" height="60" alt="Photo {{ member.name }}">
-            <span>{{ member.name }}</span>
-            <ul class="nav nav-pills">
-              {% for social in member.other_services.all %}
-              <li><a href="{{ social.identifier }}">{{ social.name }}</a></li>
-              {% endfor %}
-            </ul>
+          <div class="col-xs-4">
+            <a href="{{ member.link }}">
+              <img src="{{ member.photo_profile }}" width="60" height="60" alt="Photo {{ member.name }}">
+              <p>{{ member.name|truncatechars:14 }}</p>
+            </a>
           </div>
           {% endfor %}
         </div>
-        <div class="box-register">
-          <a href="{% url 'social:begin' 'github' %}" title="Register Github">
-            <i class="fa fa-github"></i>Github
-          </a>
-          <a href="{% url 'social:begin' 'google-oauth2' %}" title="Register Google+">
-            <i class="fa fa-google-plus"></i>Google+
-          </a>
+      </div>
+      <div class="sidebar" style="display:none;">
+        <h3 class="highlight">PyJobs <i class="glyphicon glyphicon-user pull-right"></i></h3>
+        <div class="row box-jobs">
         </div>
       </div>
-      <div class="row well box-pyjobs">
-        <h4>PyJobs</h4>
-        <div class="body">
-        </div>
-      </div>
-      <div class="row well box-twitter">
-        <h4>TwitterAPI</h4>
-        <div class="body">
-          <ul class="nav">
-          {% for tweet in tweets %}
-            <li>{{ tweet.text|safe }}</li>
-          {% endfor %}
-          </ul>
-        </div>
+      <div class="sidebar">
+        <h3 class="highlight">TwitterAPI <i class="icon-twitter pull-right"></i></h3>
+        <a class="twitter-timeline" href="https://twitter.com/PythonMG" data-widget-id="543661980817829888">Tweets de @PythonMG</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
       </div>
     </div>
+    <hr>
   </div>
-</div>
-<footer>
-  <div class="row">
-    <div class="col-lg-12">
-      <p>Copyright &copy; Python Users Group Minas - 2014</p>
+  <footer>
+    <div class="row">
+      <div class="col-xs-12">
+        <p>Copyright &copy; Python Users Group Minas - 2014</p>
+      </div>
     </div>
-  </div>
-</footer>
-<!-- Bootstrap core JavaScript -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-{% block script %}{% endblock %}
+  </footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 </html>

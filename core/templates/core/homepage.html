@@ -2,19 +2,30 @@
 
 {% block crumb %}
   {% for feed_item in object_list %}
-  <div class="body">
-    <h2>
-      <a href="{{ feed_item.link }}">{{ feed_item.title }}</a>
-    </h2>
-    <p class="lead">
-        by <a href="#">{{ feed_item.author }}</a>
-    </p>
-    <p><span class="glyphicon glyphicon-time"></span> Posted on {{ feed_item.date_modified }} in <a href="{{ feed_item.feed.public_url }}" title="Follow us" target="_blank">{{ feed_item.feed.title }}</a></p>
-    <p>{{ feed_item.summary|safe|truncatechars:300 }}</p>
-    <a class="btn btn-primary" href="{{ feed_item.link }}" title="Read more" target="_blank">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>{{ feed_item.title }}</h2>
+      <p>{{ feed_item.summary|safe|truncatechars:300 }}</p>
+      <p class="lead"><a class="btn btn-default" href="{{ feed_item.link }}">Read More</a></p>
+      <p class="pull-right" style="display: none;">
+        <span class="label label-default">keyword</span> <span class="label label-default">tag</span> <span class="label label-default">post</span>
+      </p>
+      <ul class="list-inline">
+        {% if feed_item.author %}
+        <li>
+          <a href="#"><i class="glyphicon glyphicon-user"></i> {{ feed_item.author }}</a>
+        </li>
+        {% endif %}
+        <li>
+          <a href="#"><i class="glyphicon glyphicon-time"></i> {{ feed_item.date_modified }}</a>
+        </li>
+        <li style="display:none;">
+          <a href="#"><i class="glyphicon glyphicon-time"></i>{{ feed_item.date_modified }}</a>
+        </li>
+    </div>
   </div>
-  {% endfor %}
   <hr />
+  {% endfor %}
   <ul class="pager">
     {% if page_obj.has_previous %}
     <li class="previous">
