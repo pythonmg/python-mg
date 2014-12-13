@@ -19,14 +19,14 @@ html, body, .maintenance {
 .social-bar {
   display: block;
   margin: 15px auto;
-  width: 324px;
+  width: 408px;
 }
 .social-bar a {
   float: left;
   padding: 5px;
 }
 .social {
-  background: url("sprite-social.png") no-repeat;
+  background: url("/static/img/sprite-social.png") no-repeat;
   display: block;
   height: 64px;
 }
@@ -57,4 +57,12 @@ html, body, .maintenance {
 }
 .social-bar a:hover .youtube {
   background-position: -216px -71px;
+}
+.social.github {
+  background-position: -298px -2px;
+  width: 74px;
+  height: 66px;
+}
+.social-bar a:hover .github {
+  background-position: -298px -72px;
 }
