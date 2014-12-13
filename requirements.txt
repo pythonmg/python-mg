@@ -3,10 +3,8 @@ South==1.0
 Unipath==1.0
 dj-database-url==0.3.0
 django-bootstrap3==4.8.2
-django-contrib-comments==1.5
 python-decouple==2.3
-django-gravatar2==1.1.4
-python-social-auth==0.1.26
 feedparser
 fabric
 twython
+mimeparse
