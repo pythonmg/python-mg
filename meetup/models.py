@@ -61,7 +61,7 @@ class Member(models.Model):
                 return photo.photo_link
         except Photo.DoesNotExist:
             pass
-        return 'http://default_link'
+        return '/static/img/user-default.jpg'
 
 
 class Social(models.Model):

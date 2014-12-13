@@ -1,0 +1,60 @@
+html, body, .maintenance {
+  width: 100%;
+  height: 100%;
+}
+.maintenance td {
+  vertical-align: middle;
+  text-align: center;
+}
+.maintenance ul {
+  list-style: none;
+}
+.maintenance h2 {
+  font-family: monospace;
+  margin-top: 30px;
+}
+.maintenance img {
+  border-bottom: 1px solid;
+}
+.social-bar {
+  display: block;
+  margin: 15px auto;
+  width: 324px;
+}
+.social-bar a {
+  float: left;
+  padding: 5px;
+}
+.social {
+  background: url("sprite-social.png") no-repeat;
+  display: block;
+  height: 64px;
+}
+.social.google-groups {
+  background-position: 0 0;
+  width: 64px;
+}
+.social-bar a:hover .google-groups {
+  background-position: 0 -71px;
+}
+.social.meetup {
+  background-position: -142px 0;
+  width: 74px;
+}
+.social-bar a:hover .meetup {
+  background-position: -142px -71px;
+}
+.social.twitter {
+  background-position: -75px 4px;
+  width: 64px;
+}
+.social-bar a:hover .twitter {
+  background-position: -75px -68px;
+}
+.social.youtube {
+  background-position: -216px 0;
+  width: 82px;
+}
+.social-bar a:hover .youtube {
+  background-position: -216px -71px;
+}
