@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 
 from meetup.models import Member
 from meetup.client import Meetup
@@ -12,6 +12,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         new_members = 0
         members = meetup.members()
+
         for meetup_member in members:
             member, created = Member.objects.create_or_update(meetup_member)
 

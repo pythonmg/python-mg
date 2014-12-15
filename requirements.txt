@@ -8,3 +8,4 @@ feedparser
 fabric
 twython
 mimeparse
+python-social-auth
