@@ -1,18 +1,18 @@
 from django.db import models
-from django.contrib.auth.models import User
 
-# Create your models here.
+
 class Feed(models.Model):
     title = models.CharField(max_length=500)
     feed_url = models.URLField(unique=True, max_length=500)
     public_url = models.URLField(max_length=500)
-    
+
     def __unicode__(self):
         return self.title
 
+
 class FeedItem(models.Model):
     feed = models.ForeignKey(Feed)
-    author = models.CharField(max_length=500) 
+    author = models.CharField(max_length=500)
     title = models.CharField(max_length=500)
     link = models.URLField(max_length=500)
     summary = models.TextField(blank=True)

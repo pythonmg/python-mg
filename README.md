@@ -47,13 +47,6 @@ Feeds - Importe os feeds
 `./manage.py update_feeds`
 
 
-Twitter - Importe as hashtags e os usuarios
-
-`./manage.py loaddata data/twitter.json`
-
-`./manage.py import_tweets`
-
-
 Meetup - Importe os membros
 
 - Configure chave-api e url grupo no settings
