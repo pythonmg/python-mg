@@ -6,3 +6,4 @@ python-decouple==2.3
 feedparser
 fabric
 twython
+mimeparse

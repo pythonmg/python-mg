@@ -3,6 +3,7 @@ from collections import namedtuple
 
 MeetupSocial = namedtuple('MeetupSocial', ['name', 'identifier'])
 
+
 def parse_social(data):
     social = []
     for key, value in data.items():
@@ -10,6 +11,7 @@ def parse_social(data):
     return social
 
 MeetupPhoto = namedtuple('MeetupPhoto', ['guid', 'photo_link', 'highres_link', 'thumb_link'])
+
 
 def parse_photo(data):
     if not data:
@@ -22,6 +24,7 @@ def parse_photo(data):
     )
 
 MeetupMember = namedtuple('MeetupMember', ['guid', 'name', 'social', 'photo', 'link'])
+
 
 def parse_member(data):
     return MeetupMember(

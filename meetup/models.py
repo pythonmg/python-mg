@@ -4,23 +4,13 @@ from django.db import models
 class MemberManager(models.Manager):
 
     def create_or_update(self, meetup_member):
-        try:
-            member = self.get(guid=meetup_member.guid)
-            created = False
-        except Member.DoesNotExist:
-            member = Member()
-            member.guid = meetup_member.guid
-            created = True
+        member, created = self.get_or_create(guid=meetup_member.guid)
         member.name = meetup_member.name
         member.link = meetup_member.link
-
         member.save()
 
-        try:
-            photo = Photo.objects.get(member=member)
-        except Photo.DoesNotExist:
-            photo = Photo()
-            photo.member = member
+        photo, _ = Photo.objects.get_or_create(member=member)
+
         if meetup_member.photo:
             photo.photo_link = meetup_member.photo.photo_link
             photo.highres_link = meetup_member.photo.highres_link
@@ -28,10 +18,7 @@ class MemberManager(models.Manager):
             photo.save()
 
         for meetup_social in meetup_member.social:
-            try:
-                social = member.other_services.get(name=meetup_social.name)
-            except Social.DoesNotExist:
-                social = Social()
+            social, _ = member.other_services.get_or_create(name=meetup_social.name)
             social.member = member
             social.name = meetup_social.name
             social.identifier = meetup_social.identifier
@@ -53,12 +40,8 @@ class Member(models.Model):
     def photo_profile(self):
         try:
             photo = Photo.objects.get(member=self)
-            if photo.thumb_link:
-                return photo.thumb_link
-            elif photo.highres_link:
-                return photo.highres_link
-            elif photo.photo_link:
-                return photo.photo_link
+            if photo.default_link:
+                return photo.default_link
         except Photo.DoesNotExist:
             pass
         return '/static/img/user-default.jpg'
@@ -70,7 +53,7 @@ class Social(models.Model):
     identifier = models.CharField(max_length=200, blank=True, null=True)
 
     def __unicode__(self):
-        return '{0}:{1}'.format(self.name, self.identifier)
+        return '{}:{}'.format(self.name, self.identifier)
 
 
 class Photo(models.Model):
@@ -81,3 +64,14 @@ class Photo(models.Model):
 
     def __unicode__(self):
         return self.member.name
+
+    @property
+    def default_link(self):
+        available_links = self.get_avaiable_links()
+        if available_links:
+            return available_links[0]
+        return
+
+    def get_avaiable_links(self):
+        links = ['photo_link', 'highres_link', 'thumb_link']
+        return filter(lambda link: getattr(self, link, None), links)
