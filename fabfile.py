@@ -24,7 +24,8 @@ def pull():
 
 def manage(args):
     with cd(PROJECT_PATH):
-        run("%s manage.py %s" % (PYTHON_BIN, args))
+        run("%s manage.py %s --settings=settings.production" % (PYTHON_BIN,
+            args))
 
 
 def install_requirements():
@@ -44,17 +45,13 @@ def deploy():
     reload_service()
 
 
-
 def reset_feeds():
-    """
-    Work on production environment
-    """
-    local('./manage.py sqlclear feeds | ./manage.py dbshell')
-    local('./manage.py syncdb')
-    local('./manage.py loaddata data/feeds.json')
-    local('./manage.py update_feeds')
+    manage('sqlclear feeds')
+    manage('dbshell')
+    manage('syncdb')
+    manage('loaddata data/feeds.json')
+    manage('update_feeds')
 
 
 def update_data():
-    local('./manage.py update_feeds')
-    local('./manage.py import_tweets')
+    manage('update_feeds')
