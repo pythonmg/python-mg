@@ -103,55 +103,11 @@ TEMPLATE_DIRS = (
     BASE_DIR.child('templates'),
 )
 
-# Additional config
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
-    'django.core.context_processors.request',
-
-    'social.apps.django_app.context_processors.backends',
-    'social.apps.django_app.context_processors.login_redirect',
-
-    'core.context_processors.tweets',
-    'core.context_processors.members',
-)
-
 AUTHENTICATION_BACKENDS = (
-    'social.backends.google.GoogleOpenId',
-    'social.backends.google.GoogleOAuth2',
-    'social.backends.google.GoogleOAuth',
-    'social.backends.github.GithubOAuth2',
-
     'django.contrib.auth.backends.ModelBackend',
 )
 
 LOGIN_REDIRECT_URL = '/'
-
-GRAVATAR_DEFAULT_SIZE = 50
-
-SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'email', 'first_name']
-
-SOCIAL_AUTH_PIPELINE = (
-    'social.pipeline.social_auth.social_details',
-    'social.pipeline.social_auth.social_uid',
-    'social.pipeline.social_auth.auth_allowed',
-    'social.pipeline.social_auth.social_user',
-    'social.pipeline.user.get_username',
-    'social.pipeline.user.create_user',
-    'social.pipeline.social_auth.associate_user',
-    'social.pipeline.social_auth.load_extra_data',
-    'social.pipeline.user.user_details'
-)
-
-SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY', default='')
-SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET', default='')
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY', default='')
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET', default='')
-SOCIAL_AUTH_GOOGLE_OAUTH2_USE_DEPRECATED_API = True
-
-#twitter settings
-TWITTER_APP_KEY = config('TWITTER_APP_KEY', default='')
-TWITTER_APP_SECRET = config('TWITTER_APP_SECRET', default='')
-TWITTER_OAUTH_TOKEN = config('TWITTER_OAUTH_TOKEN', default='')
-TWITTER_OAUTH_TOKEN_SECRET = config('TWITTER_OAUTH_TOKEN_SECRET', default='')
 
 
 MEETUP_API_KEY = config('MEETUP_API_KEY', default='')

@@ -12,9 +12,15 @@
               {{ feed_item.summary|safe|truncatechars:300 }}
           </h3>
         </a>
-        {% blocktrans %}
-        <p class="post-meta">Posted by <a href="{{ feed_item.feed.public_url }}">{{ feed_item.author }} | {{ feed_item.feed.title }}</a> on {{ feed_item.date_modified|date:"F j, o" }}</p>
+        {% if feed_item.author %}
+        {% blocktrans with public_url=feed_item.feed.public_url author=feed_item.author feed=feed_item.feed.title date_modified=feed_item.date_modified|date:"F j, o" %}
+        <p class="post-meta">Posted by <a href="{{ public_url }}">{{ author }} | {{ feed }}</a> on {{ date_modified }}</p>
         {% endblocktrans %}
+        {% else %}
+        {% blocktrans with public_url=feed_item.feed.public_url feed=feed_item.feed.title date_modified=feed_item.date_modified|date:"F j, o" %}
+        <p class="post-meta">Posted by <a href="{{ public_url }}">{{ feed }}</a> on {{ date_modified }}</p>
+        {% endblocktrans %}
+        {% endif %}
       </div>
       {% endfor %}
     </div>
