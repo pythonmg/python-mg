@@ -47,7 +47,6 @@ INSTALLED_APPS = (
     # my applications
     'core',
     'feeds',
-    'twitter_app',
     'meetup',
 )
 
