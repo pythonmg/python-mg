@@ -1,5 +1,4 @@
 {% load static %}
-{% load gravatar %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,113 +7,124 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="shortcut icon" href="{% static 'ico/favicon.ico' %}">
 
-  <title>Minas - Python Users Group</title>
+  <title>PythonMG - Python Users Group Belo Horizonte</title>
 
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <!-- Bootstrap Core CSS -->
+  <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="{% static 'css/clean-blog.css' %}" rel="stylesheet">
+  <!-- Custom Fonts -->
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
+
 <body>
-<header>
-  <nav class="navbar navbar-fixed-top bg-gradient" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header page-scroll">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand box-logo" href="#">
-          <img src="{% static 'img/logo-homepage.png' %}" alt="Python Users Group - Minas" />
-        </a>
+        <a class="navbar-brand" href="index.html">Start Bootstrap</a>
       </div>
-      <div class="collapse navbar-collapse box-menu" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="{% url 'core:homepage' %}" title="Homepage"><i class="icon ic-menu"></i>Home</a>
+            <a href="index.html">Home</a>
           </li>
           <li>
-            <a href="#" title="Members"><i class="icon ic-menu"></i>Members</a>
+            <a href="about.html">About</a>
           </li>
           <li>
-            <a href="#" title="Projects"><i class="icon ic-menu"></i>Projects</a>
+            <a href="post.html">Sample Post</a>
           </li>
           <li>
-            <a href="#" title="Contact us"><i class="icon ic-menu"></i>Contact us</a>
+            <a href="contact.html">Contact</a>
           </li>
         </ul>
       </div>
+      <!-- /.navbar-collapse -->
     </div>
+    <!-- /.container -->
   </nav>
-</header>
-<div class="container">
-  <div class="row box-content">
-    <div class="col-md-8 box-crumb">
-      {% block crumb %}
-      {% endblock %}
-    </div>
-    <div class="col-md-4 box-right">
-      <div class="row well box-social">
-        <h4>Social</h4>
-        <div class="row body">
-          <ul class="nav nav-pills">
-            <li><a href="https://groups.google.com/forum/?fromgroups#!forum/python-mg">Google Groups</a></li>
-            <li><a href="http://www.meetup.com/Belo-Horizonte-Python-User-Group/">Meetup</a></li>
-            <li><a href="https://www.youtube.com/channel/UCrQjZ8bHePsrAqaKgSmKPPQ">YouTube</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="row well box-members">
-        <h4>Members</h4>
-        <div class="row body">
-          {% for member in members %}
-          <div class="col-xs-3">
-            {% gravatar user.email 60 %}
-            <span>{{ member.get_full_name }}</span>
+
+  <!-- Page Header -->
+  <!-- Set your background image for this header on the line below. -->
+  <header class="intro-header" style="background-image: url('{% static 'img/home-bg.jpg' %}')">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          <div class="site-heading">
+            <h1>Clean Blog</h1>
+            <hr class="small">
+            <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
           </div>
-          {% endfor %}
-        </div>
-        <div class="box-register">
-          <a href="{% url 'social:begin' 'github' %}" title="Register Github">
-            <i class="fa fa-github"></i>Github
-          </a>
-          <a href="{% url 'social:begin' 'google-oauth2' %}" title="Register Google+">
-            <i class="fa fa-google-plus"></i>Google+
-          </a>
         </div>
       </div>
-      <div class="row well box-pyjobs">
-        <h4>PyJobs</h4>
-        <div class="body">
-        </div>
-      </div>
-      <div class="row well box-twitter">
-        <h4>TwitterAPI</h4>
-        <div class="body">
-          <ul class="nav">
-          {% for tweet in tweets %}
-            <li>{{ tweet.text|safe }}</li>
-          {% endfor %}
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    {% block content %}
+    {% endblock %}
+  </div>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          <ul class="list-inline text-center">
+            <li>
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
           </ul>
+          <p class="copyright text-muted">Copyright &copy; Your Website 2014</p>
         </div>
       </div>
     </div>
-  </div>
-</div>
-<footer>
-  <div class="row">
-    <div class="col-lg-12">
-      <p>Copyright &copy; Python Users Group Minas - 2014</p>
-    </div>
-  </div>
-</footer>
-<!-- Bootstrap core JavaScript -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-{% block script %}{% endblock %}
+  </footer>
+  <script src="{% static 'js/jquery.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/clean-blog.min.js' %}"></script>
+  {% block script %}{% endblock %}
 </body>
 </html>

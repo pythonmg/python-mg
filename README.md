@@ -45,14 +45,6 @@ Importe os feeds
 
 `./manage.py update_feeds`
 
-Tweets
-
-Importe as hashtags e os usuarios
-
-`./manage.py loaddata data/twitter.json`
-
-`./manage.py import_tweets`
-
 
 Veja a pagina inicial.
 
