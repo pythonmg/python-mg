@@ -24,8 +24,8 @@ def pull():
 
 def manage(args):
     with cd(PROJECT_PATH):
-        run("%s manage.py %s --settings=settings.production" % (PYTHON_BIN,
-            args))
+        run("%s manage.py %s --settings=pymg.settings.production" % (
+            PYTHON_BIN, args))
 
 
 def install_requirements():
