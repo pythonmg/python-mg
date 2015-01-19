@@ -42,11 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
 
     # third-party applications
-    'south',
-    'social.apps.django_app.default',
     'bootstrap3',
-    'django_comments',
-    'django_gravatar',
 
     # my applications
     'core',

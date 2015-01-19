@@ -5,5 +5,9 @@ from feeds.models import FeedItem
 
 class Homepage(ListView):
     template_name = 'core/homepage.html'
-    queryset = FeedItem.objects.filter().order_by('-date_modified')
-    paginate_by = 9
+    paginate_by = 5
+
+    def get_queryset(self):
+        return FeedItem.objects.exclude(
+            feed__title='Github'
+        ).order_by('-date_modified')
