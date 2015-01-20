@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>PythonMG - Python Users Group Belo Horizonte</title>
+  <title>{% block title %}PythonMG - Python Users Group Belo Horizonte{% endblock %}</title>
 
   <!-- Bootstrap Core CSS -->
   <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
@@ -29,6 +29,8 @@
 </head>
 
 <body>
+  <!-- Vincular site ao GooglePlus para obter maior relevância -->
+  <a href="https://plus.google.com/113025314131637717707" rel="publisher"></a>
   <!-- Navigation -->
   <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container-fluid">
@@ -49,10 +51,10 @@
             <a href="{% url 'core:homepage' %}">{% trans 'Home' %}</a>
           </li>
           <li>
-            <a href="about.html">{% trans 'About' %}</a>
+            <a href="{% url 'about' %}">{% trans 'About' %}</a>
           </li>
           <li>
-            <a href="contact.html">{% trans 'Contact' %}</a>
+            <a href="{% url 'core:contact' %}">{% trans 'Contact' %}</a>
           </li>
         </ul>
       </div>

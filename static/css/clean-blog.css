@@ -393,3 +393,6 @@ img::-moz-selection {
 body {
   webkit-tap-highlight-color: #BF2E2B;
 }
+div.flatpage {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}

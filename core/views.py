@@ -1,6 +1,9 @@
+from django.views.generic.edit import FormView
 from django.views.generic.list import ListView
 
 from feeds.models import FeedItem
+
+from .forms import ContactForm
 
 
 class Homepage(ListView):
@@ -11,3 +14,12 @@ class Homepage(ListView):
         return FeedItem.objects.exclude(
             feed__title='Github'
         ).order_by('-date_modified')
+
+
+class Contact(FormView):
+    template_name = 'core/contact.html'
+    form_class = ContactForm
+
+    def form_valid(self, form):
+        form.send_mail()
+        return super(Contact, self).form_valid()

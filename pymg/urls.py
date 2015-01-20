@@ -9,6 +9,11 @@ urlpatterns = patterns(
     '',
     url(r'', include('core.urls', namespace='core')),
     url(r'^admin/', include(admin.site.urls)),
+
+    # Flatpages
+    url(r'^about/$',
+        'django.contrib.flatpages.views.flatpage',
+        {'url': '/about/'}, name='about'),
 )
 
 if settings.DEBUG:
