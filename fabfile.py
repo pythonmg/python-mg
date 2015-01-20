@@ -1,4 +1,4 @@
-from fabric.api import local, env, run, cd, sudo
+from fabric.api import env, run, cd, sudo
 from decouple import config
 
 
