@@ -1,10 +1,10 @@
-Django==1.7
+Django==1.9
 Unipath==1.0
 dj-database-url==0.3.0
 django-bootstrap3==4.8.2
 django-ckeditor==4.4.7
 python-decouple==2.3
-feedparser
-fabric
-twython
-mimeparse
+feedparser==5.2.1
+Fabric==1.11.1
+twython==3.4.0
+mimeparse==0.1.3

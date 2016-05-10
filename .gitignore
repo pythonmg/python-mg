@@ -43,3 +43,4 @@ media/
 
 # django-decouple conf
 *.env
+.venv

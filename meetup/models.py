@@ -48,7 +48,11 @@ class Member(models.Model):
 
 
 class Social(models.Model):
-    member = models.ForeignKey('meetup.Member', related_name='other_services')
+    member = models.ForeignKey(
+        'meetup.Member',
+        related_name='other_services',
+        on_delete=models.CASCADE
+    )
     name = models.CharField(max_length=150)
     identifier = models.CharField(max_length=200, blank=True, null=True)
 
@@ -57,7 +61,7 @@ class Social(models.Model):
 
 
 class Photo(models.Model):
-    member = models.OneToOneField('meetup.Member')
+    member = models.OneToOneField('meetup.Member', on_delete=models.CASCADE)
     photo_link = models.URLField(blank=True, null=True)
     highres_link = models.URLField(blank=True, null=True)
     thumb_link = models.URLField(blank=True, null=True)
