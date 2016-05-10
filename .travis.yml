@@ -1,12 +1,12 @@
 language: python
 python:
   - "2.7"
+  - "3.5"
 env:
   - DJANGO=1.9 DB=sqlite3
 install:
   - pip install -r requirements.txt
 script:
   - export DJANGO_SETTINGS_MODULE=pymg.settings.test
-  - python manage.py makemigrations
   - python manage.py migrate
   - python manage.py test
