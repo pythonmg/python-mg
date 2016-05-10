@@ -1,7 +1,7 @@
 Django==1.9
 Unipath==1.0
 dj-database-url==0.3.0
-django-bootstrap3==4.8.2
+django-bootstrap3==7.0.1
 django-ckeditor==4.4.7
 python-decouple==2.3
 feedparser==5.2.1
