@@ -11,7 +11,7 @@ class Feed(models.Model):
 
 
 class FeedItem(models.Model):
-    feed = models.ForeignKey(Feed)
+    feed = models.ForeignKey(Feed, on_delete=models.CASCADE)
     author = models.CharField(max_length=500)
     title = models.CharField(max_length=500)
     link = models.URLField(max_length=500)

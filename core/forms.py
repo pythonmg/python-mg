@@ -7,4 +7,4 @@ class ContactForm(forms.Form):
     message = forms.CharField(widget=forms.Textarea)
 
     def send_mail(self):
-        print "send email"
+        print("send email")

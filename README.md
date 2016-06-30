@@ -17,9 +17,9 @@ Vá para a pasta do projeto e instale as libs necessárias
    `pip install -r requirements.txt`
 
 
-Agora já pode rodar o syncdb para criar as tabelas no banco de dados.
+Agora já pode rodar o migrate para criar as tabelas no banco de dados.
 
-   `python manage.py syncdb`
+   `python manage.py migrate`
 
 Rode o server
 
@@ -30,7 +30,7 @@ Abra seu navegador e acesse http://127.0.0.1:8000
 Rode os testes
 -------------
 
-`./manage.py syncdb --settings=pymg.settings.test`
+`./manage.py migrate --run-syncdb --settings=pymg.settings.test`
 
 `./manage.py migrate --all --settings=pymg.settings.test`
 
