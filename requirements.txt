@@ -1,4 +1,4 @@
-Django==1.11.28
+Django==1.11.29
 Unipath==1.0
 dj-database-url==0.3.0
 django-bootstrap3==7.0.1
